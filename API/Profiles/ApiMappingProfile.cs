@@ -1,0 +1,58 @@
+﻿using AutoMapper;
+using Wardrobe.API.DTOs.Brands;
+using Wardrobe.API.DTOs.Categories;
+using Wardrobe.API.DTOs.Roles;
+using Wardrobe.API.DTOs.Users;
+using Wardrobe.Data.Entities;
+using Wardrobe.API.DTOs.ClothingItems;
+using Wardrobe.API.DTOs.Outfits;
+
+namespace Wardrobe.API.Profiles;
+
+public class ApiMappingProfile : Profile
+{
+    public ApiMappingProfile()
+    {
+        CreateMap<Category, CategoryDto>();
+
+        CreateMap<CreateCategoryDto, Category>();
+
+
+        CreateMap<Brand, BrandDto>();
+
+        CreateMap<CreateBrandDto, Brand>();
+
+
+        CreateMap<CreateClothingItemDto, ClothingItem>();
+
+        CreateMap<ClothingItem, ClothingItemDto>()
+            .ForMember(
+                x => x.CategoryName,
+                opt => opt.MapFrom(
+                    src => src.Category.Name))
+            .ForMember(
+                x => x.BrandName,
+                opt => opt.MapFrom(
+                    src => src.Brand.Name));
+
+
+        CreateMap<CreateOutfitDto, Outfit>();
+
+        CreateMap<Outfit, OutfitDto>();
+
+        CreateMap<Role, RoleDto>();
+
+
+        CreateMap<CreateUserDto, User>()
+            .ForMember(
+                x => x.PasswordHash,
+                opt => opt.Ignore());
+
+
+        CreateMap<User, UserDto>()
+            .ForMember(
+                x => x.RoleName,
+                opt => opt.MapFrom(
+                    src => src.Role.Name));
+    }
+}

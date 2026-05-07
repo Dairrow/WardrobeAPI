@@ -1,0 +1,48 @@
+﻿using Microsoft.Extensions.Logging;
+using Wardrobe.Data.Entities;
+using Wardrobe.Repositories.Interfaces;
+using Wardrobe.Services.Interfaces;
+
+namespace Wardrobe.Services.Implementations;
+
+public class BrandService : IBrandService
+{
+    private readonly IBrandRepository _repository;
+
+    private readonly ILogger<BrandService> _logger;
+
+
+    public BrandService(
+        IBrandRepository repository,
+        ILogger<BrandService> logger)
+    {
+        _repository = repository;
+
+        _logger = logger;
+    }
+
+
+    public async Task<IEnumerable<Brand>> GetAllAsync()
+    {
+        return await _repository.GetAllAsync();
+    }
+
+
+    public async Task<Brand?> GetByIdAsync(int id)
+    {
+        return await _repository.GetByIdAsync(
+            id);
+    }
+
+
+    public async Task<Brand> CreateAsync(
+        Brand brand)
+    {
+        _logger.LogInformation(
+            "Creating brand {Name}",
+            brand.Name);
+
+        return await _repository.AddAsync(
+            brand);
+    }
+}

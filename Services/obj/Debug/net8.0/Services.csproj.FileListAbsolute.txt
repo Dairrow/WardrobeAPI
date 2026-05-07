@@ -1,0 +1,17 @@
+F:\For VS\Wardrobe_API\Services\bin\Debug\net8.0\Services.deps.json
+F:\For VS\Wardrobe_API\Services\bin\Debug\net8.0\Services.dll
+F:\For VS\Wardrobe_API\Services\bin\Debug\net8.0\Services.pdb
+F:\For VS\Wardrobe_API\Services\obj\Debug\net8.0\Services.GeneratedMSBuildEditorConfig.editorconfig
+F:\For VS\Wardrobe_API\Services\obj\Debug\net8.0\Services.AssemblyInfoInputs.cache
+F:\For VS\Wardrobe_API\Services\obj\Debug\net8.0\Services.AssemblyInfo.cs
+F:\For VS\Wardrobe_API\Services\obj\Debug\net8.0\Services.csproj.CoreCompileInputs.cache
+F:\For VS\Wardrobe_API\Services\obj\Debug\net8.0\Services.dll
+F:\For VS\Wardrobe_API\Services\obj\Debug\net8.0\refint\Services.dll
+F:\For VS\Wardrobe_API\Services\obj\Debug\net8.0\Services.pdb
+F:\For VS\Wardrobe_API\Services\obj\Debug\net8.0\ref\Services.dll
+F:\For VS\Wardrobe_API\Services\bin\Debug\net8.0\Data.dll
+F:\For VS\Wardrobe_API\Services\bin\Debug\net8.0\Repositories.dll
+F:\For VS\Wardrobe_API\Services\bin\Debug\net8.0\Data.pdb
+F:\For VS\Wardrobe_API\Services\bin\Debug\net8.0\Repositories.pdb
+F:\For VS\Wardrobe_API\Services\obj\Debug\net8.0\Services.csproj.AssemblyReference.cache
+F:\For VS\Wardrobe_API\Services\obj\Debug\net8.0\Services.csproj.Up2Date

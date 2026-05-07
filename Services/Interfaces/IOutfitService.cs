@@ -4,10 +4,7 @@ namespace Wardrobe.Services.Interfaces;
 
 public interface IOutfitService
 {
-    Task<IEnumerable<Outfit>> GetAllAsync();
-
-    Task<Outfit?> GetByIdAsync(int id);
-
-    Task<Outfit> CreateAsync(
-        Outfit outfit);
+    Task<IEnumerable<Outfit>> GetByUserIdAsync(int userId);
+    Task<Outfit?> GetByIdAsync(int id, int userId);
+    Task<Outfit> CreateAsync(Outfit outfit);
 }

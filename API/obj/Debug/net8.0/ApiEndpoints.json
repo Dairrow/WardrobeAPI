@@ -256,6 +256,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Wardrobe.API.Controllers.OutfitsController",
+    "Method": "GetById",
+    "RelativePath": "api/Outfits/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Wardrobe.API.Controllers.RolesController",
     "Method": "GetAll",
     "RelativePath": "api/Roles",

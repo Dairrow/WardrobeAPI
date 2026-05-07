@@ -6,6 +6,7 @@ using Wardrobe.API.DTOs.Users;
 using Wardrobe.Data.Entities;
 using Wardrobe.API.DTOs.ClothingItems;
 using Wardrobe.API.DTOs.Outfits;
+using Wardrobe.API.DTOs.OutfitItems;
 
 namespace Wardrobe.API.Profiles;
 
@@ -22,7 +23,6 @@ public class ApiMappingProfile : Profile
 
         CreateMap<CreateBrandDto, Brand>();
 
-
         CreateMap<CreateClothingItemDto, ClothingItem>();
 
         CreateMap<ClothingItem, ClothingItemDto>()
@@ -37,6 +37,8 @@ public class ApiMappingProfile : Profile
 
 
         CreateMap<CreateOutfitDto, Outfit>();
+
+        CreateMap<OutfitItem, OutfitItemDto>();
 
         CreateMap<Outfit, OutfitDto>();
 

@@ -230,6 +230,70 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Wardrobe.API.Controllers.OutfitItemsController",
+    "Method": "AddItemToOutfit",
+    "RelativePath": "api/OutfitItems",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Wardrobe.API.DTOs.OutfitItems.CreateOutfitItemDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Wardrobe.API.Controllers.OutfitItemsController",
+    "Method": "RemoveItemFromOutfit",
+    "RelativePath": "api/OutfitItems",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Wardrobe.API.DTOs.OutfitItems.CreateOutfitItemDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Wardrobe.API.Controllers.OutfitItemsController",
+    "Method": "GetByOutfit",
+    "RelativePath": "api/OutfitItems/outfit/{outfitId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "outfitId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Wardrobe.API.Controllers.OutfitItemsController",
+    "Method": "GetOutfitDetails",
+    "RelativePath": "api/OutfitItems/outfit/{outfitId}/details",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "outfitId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Wardrobe.API.Controllers.OutfitsController",
     "Method": "GetAll",
     "RelativePath": "api/Outfits",

@@ -26,6 +26,8 @@ public static class ServiceExtensions
 
         services.AddScoped<IOutfitService, OutfitService>();
 
+        services.AddScoped<IOutfitItemService, OutfitItemService>();
+
 
         return services;
     }

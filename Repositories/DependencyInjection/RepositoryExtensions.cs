@@ -21,6 +21,7 @@ public static class RepositoryExtensions
 
         services.AddScoped<IOutfitRepository, OutfitRepository>();
 
+        services.AddScoped<IOutfitItemRepository, OutfitItemRepository>();
 
         return services;
     }

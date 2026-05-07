@@ -1,9 +1,9 @@
 ﻿namespace Wardrobe.Services.Exceptions;
 
-public class ConflictException
+public class ValidationException
     : Exception
 {
-    public ConflictException(
+    public ValidationException(
         string message)
         : base(message)
     {

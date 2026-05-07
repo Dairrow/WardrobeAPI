@@ -84,4 +84,39 @@ public class UsersController : ControllerBase
             new { id = result.Id },
             result);
     }
+
+    [HttpPut("{id:int}")]
+    public async Task<ActionResult<
+    UserDto>> Update(
+        int id,
+        UpdateUserDto dto)
+    {
+        var entity =
+            _mapper.Map<User>(
+                dto);
+
+
+        var updated =
+            await _service.UpdateAsync(
+                id,
+                entity);
+
+
+        return Ok(
+            _mapper.Map<UserDto>(
+                updated));
+    }
+
+
+    [HttpDelete("{id:int}")]
+    public async Task<IActionResult>
+        Delete(
+            int id)
+    {
+        await _service.DeleteAsync(
+            id);
+
+
+        return NoContent();
+    }
 }

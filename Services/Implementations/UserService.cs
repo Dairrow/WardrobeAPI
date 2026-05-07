@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Wardrobe.Data.Entities;
 using Wardrobe.Repositories.Interfaces;
+using Wardrobe.Services.Exceptions;
 using Wardrobe.Services.Interfaces;
 
 namespace Wardrobe.Services.Implementations;
@@ -60,7 +61,7 @@ public class UserService : IUserService
 
         if (existingUser is not null)
         {
-            throw new InvalidOperationException(
+            throw new ConflictException(
                 "User already exists");
         }
 
@@ -72,5 +73,61 @@ public class UserService : IUserService
 
         return await _repository.AddAsync(
             user);
+    }
+
+    public async Task<User>
+    UpdateAsync(
+        int id,
+        User user)
+    {
+        var existing =
+            await _repository
+                .GetByIdAsync(id);
+
+
+        if (existing is null)
+        {
+            throw new NotFoundException(
+                "User not found");
+        }
+
+
+        existing.Username =
+            user.Username;
+
+        existing.Email =
+            user.Email;
+
+        existing.RoleId =
+            user.RoleId;
+
+
+        await _repository
+            .UpdateAsync(
+                existing);
+
+
+        return existing;
+    }
+
+
+    public async Task DeleteAsync(
+        int id)
+    {
+        var existing =
+            await _repository
+                .GetByIdAsync(id);
+
+
+        if (existing is null)
+        {
+            throw new NotFoundException(
+                "User not found");
+        }
+
+
+        await _repository
+            .DeleteAsync(
+                existing);
     }
 }

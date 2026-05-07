@@ -68,6 +68,44 @@ public class OutfitsController
             _mapper.Map<OutfitDto>(created));
     }
 
+
+    [HttpPut("{id:int}")]
+    public async Task<ActionResult<
+        OutfitDto>> Update(
+            int id,
+            UpdateOutfitDto dto)
+    {
+        var entity =
+            _mapper.Map<
+                Outfit>(
+                    dto);
+
+
+        var updated =
+            await _service.UpdateAsync(
+                id,
+                entity);
+
+
+        return Ok(
+            _mapper.Map<
+                OutfitDto>(
+                    updated));
+    }
+
+
+    [HttpDelete("{id:int}")]
+    public async Task<IActionResult>
+        Delete(
+            int id)
+    {
+        await _service.DeleteAsync(
+            id);
+
+
+        return NoContent();
+    }
+
     protected int GetCurrentUserId()
     {
         var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;

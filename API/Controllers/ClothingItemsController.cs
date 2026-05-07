@@ -28,6 +28,7 @@ public class ClothingItemsController
         _mapper = mapper;
     }
 
+
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
@@ -60,5 +61,42 @@ public class ClothingItemsController
         }
 
         return userId;
+    }
+
+    [HttpPut("{id:int}")]
+    public async Task<ActionResult<
+    ClothingItemDto>> Update(
+        int id,
+        UpdateClothingItemDto dto)
+    {
+        var entity =
+            _mapper.Map<
+                ClothingItem>(
+                    dto);
+
+
+        var updated =
+            await _service.UpdateAsync(
+                id,
+                entity);
+
+
+        return Ok(
+            _mapper.Map<
+                ClothingItemDto>(
+                    updated));
+    }
+
+
+    [HttpDelete("{id:int}")]
+    public async Task<IActionResult>
+        Delete(
+            int id)
+    {
+        await _service.DeleteAsync(
+            id);
+
+
+        return NoContent();
     }
 }

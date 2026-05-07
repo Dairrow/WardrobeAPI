@@ -56,5 +56,15 @@ public class ApiMappingProfile : Profile
                 x => x.RoleName,
                 opt => opt.MapFrom(
                     src => src.Role.Name));
+
+        CreateMap<UpdateCategoryDto, Category>();
+
+        CreateMap<UpdateBrandDto, Brand>();
+
+        CreateMap<UpdateUserDto, User>();
+
+        CreateMap<UpdateClothingItemDto, ClothingItem>();
+
+        CreateMap<UpdateOutfitDto, Outfit>();
     }
 }

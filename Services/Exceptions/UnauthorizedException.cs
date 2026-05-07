@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Wardrobe.Services.Exceptions;
 
-namespace Services.Exceptions
+public class UnauthorizedException
+    : Exception
 {
-    internal class UnauthorizedException
+    public UnauthorizedException(
+        string message)
+        : base(message)
     {
     }
 }

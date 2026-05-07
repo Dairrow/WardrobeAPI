@@ -1,5 +1,6 @@
 ﻿using Wardrobe.Data.Entities;
 using Wardrobe.Repositories.Interfaces;
+using Wardrobe.Services.Exceptions;
 using Wardrobe.Services.Helpers;
 using Wardrobe.Services.Interfaces;
 
@@ -40,7 +41,7 @@ public class AuthService
 
         if (existing is not null)
         {
-            throw new Exception(
+            throw new ConflictException(
                 "User already exists");
         }
 
@@ -52,7 +53,7 @@ public class AuthService
 
         if (role is null)
         {
-            throw new Exception(
+            throw new NotFoundException(
                 "Admin role not found");
         }
 
@@ -90,7 +91,8 @@ public class AuthService
 
         if (user is null)
         {
-            throw new UnauthorizedAccessException();
+            throw new UnauthorizedException(
+                "Invalid credentials");
         }
 
 
@@ -101,7 +103,8 @@ public class AuthService
 
         if (user.PasswordHash != hash)
         {
-            throw new UnauthorizedAccessException();
+            throw new UnauthorizedException(
+                "Invalid credentials");
         }
 
 

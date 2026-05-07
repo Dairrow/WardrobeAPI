@@ -95,4 +95,43 @@ public class CategoriesController : ControllerBase
             new { id = result.Id },
             result);
     }
+
+    [HttpPut("{id:int}")]
+    [ProducesResponseType(200)]
+    [ProducesResponseType(404)]
+    public async Task<ActionResult<
+    CategoryDto>> Update(
+        int id,
+        UpdateCategoryDto dto)
+    {
+        var entity =
+            _mapper.Map<Category>(
+                dto);
+
+
+        var updated =
+            await _service.UpdateAsync(
+                id,
+                entity);
+
+
+        return Ok(
+            _mapper.Map<CategoryDto>(
+                updated));
+    }
+
+
+    [HttpDelete("{id:int}")]
+    [ProducesResponseType(204)]
+    [ProducesResponseType(404)]
+    public async Task<IActionResult>
+        Delete(
+            int id)
+    {
+        await _service.DeleteAsync(
+            id);
+
+
+        return NoContent();
+    }
 }

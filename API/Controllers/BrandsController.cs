@@ -84,4 +84,39 @@ public class BrandsController : ControllerBase
             new { id = result.Id },
             result);
     }
+
+    [HttpPut("{id:int}")]
+    public async Task<ActionResult<
+    BrandDto>> Update(
+        int id,
+        UpdateBrandDto dto)
+    {
+        var entity =
+            _mapper.Map<Brand>(
+                dto);
+
+
+        var updated =
+            await _service.UpdateAsync(
+                id,
+                entity);
+
+
+        return Ok(
+            _mapper.Map<BrandDto>(
+                updated));
+    }
+
+
+    [HttpDelete("{id:int}")]
+    public async Task<IActionResult>
+        Delete(
+            int id)
+    {
+        await _service.DeleteAsync(
+            id);
+
+
+        return NoContent();
+    }
 }

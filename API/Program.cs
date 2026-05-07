@@ -60,6 +60,7 @@ builder.Services.AddJwt(builder.Configuration);
 
 
 var app = builder.Build();
+app.UseGlobalExceptionHandling();
 
 
 if (app.Environment.IsDevelopment())

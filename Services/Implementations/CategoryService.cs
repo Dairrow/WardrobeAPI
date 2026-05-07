@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Wardrobe.Data.Entities;
 using Wardrobe.Repositories.Interfaces;
+using Wardrobe.Services.Exceptions;
 using Wardrobe.Services.Interfaces;
 
 namespace Wardrobe.Services.Implementations;
@@ -47,5 +48,55 @@ public class CategoryService : ICategoryService
 
         return await _repository.AddAsync(
             category);
+    }
+
+    public async Task<Category>
+    UpdateAsync(
+        int id,
+        Category category)
+    {
+        var existing =
+            await _repository
+                .GetByIdAsync(id);
+
+
+        if (existing is null)
+        {
+            throw new NotFoundException(
+                "Category not found");
+        }
+
+
+        existing.Name =
+            category.Name;
+
+
+        await _repository
+            .UpdateAsync(
+                existing);
+
+
+        return existing;
+    }
+
+
+    public async Task DeleteAsync(
+        int id)
+    {
+        var existing =
+            await _repository
+                .GetByIdAsync(id);
+
+
+        if (existing is null)
+        {
+            throw new NotFoundException(
+                "Category not found");
+        }
+
+
+        await _repository
+            .DeleteAsync(
+                existing);
     }
 }

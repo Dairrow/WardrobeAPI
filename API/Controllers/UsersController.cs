@@ -8,7 +8,7 @@ using Wardrobe.Services.Interfaces;
 namespace Wardrobe.API.Controllers;
 
 [ApiController]
-[Authorize]
+[Authorize(Roles = "Admin")]
 [Route("api/[controller]")]
 public class UsersController : ControllerBase
 {

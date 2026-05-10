@@ -61,6 +61,7 @@ public class BrandsController : ControllerBase
 
 
     [HttpPost]
+    [Authorize(Roles = "Admin")]
     public async Task<ActionResult<BrandDto>> Create(
         CreateBrandDto dto)
     {
@@ -86,6 +87,7 @@ public class BrandsController : ControllerBase
     }
 
     [HttpPut("{id:int}")]
+    [Authorize(Roles = "Admin")]
     public async Task<ActionResult<
     BrandDto>> Update(
         int id,
@@ -109,6 +111,7 @@ public class BrandsController : ControllerBase
 
 
     [HttpDelete("{id:int}")]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult>
         Delete(
             int id)

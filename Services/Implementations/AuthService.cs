@@ -48,13 +48,13 @@ public class AuthService
 
         var role =
             await _roles.GetByNameAsync(
-                "Admin");
+                "User");
 
 
         if (role is null)
         {
             throw new NotFoundException(
-                "Admin role not found");
+                "User role not found");
         }
 
 

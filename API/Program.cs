@@ -61,7 +61,7 @@ builder.Services.AddJwt(builder.Configuration);
 
 var app = builder.Build();
 app.UseGlobalExceptionHandling();
-
+app.UseStaticFiles();
 
 if (app.Environment.IsDevelopment())
 {

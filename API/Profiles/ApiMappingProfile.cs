@@ -23,7 +23,20 @@ public class ApiMappingProfile : Profile
 
         CreateMap<CreateBrandDto, Brand>();
 
-        CreateMap<CreateClothingItemDto, ClothingItem>();
+        CreateMap<
+            CreateClothingItemDto,
+            ClothingItem>()
+            .ForMember(
+                x => x.ImagePath,
+                opt => opt.Ignore());
+
+
+        CreateMap<
+            UpdateClothingItemDto,
+            ClothingItem>()
+            .ForMember(
+                x => x.ImagePath,
+                opt => opt.Ignore());
 
         CreateMap<ClothingItem, ClothingItemDto>()
             .ForMember(

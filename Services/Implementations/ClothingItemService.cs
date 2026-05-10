@@ -72,8 +72,12 @@ public class ClothingItemService
         existing.BrandId =
             item.BrandId;
 
-        existing.ImagePath =
-            item.ImagePath;
+        if (!string.IsNullOrWhiteSpace(
+                item.ImagePath))
+        {
+            existing.ImagePath =
+                item.ImagePath;
+        }
 
 
         await _repository

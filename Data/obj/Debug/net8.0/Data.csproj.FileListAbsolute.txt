@@ -9,3 +9,4 @@ F:\For VS\Wardrobe_API\Data\obj\Debug\net8.0\Data.dll
 F:\For VS\Wardrobe_API\Data\obj\Debug\net8.0\refint\Data.dll
 F:\For VS\Wardrobe_API\Data\obj\Debug\net8.0\Data.pdb
 F:\For VS\Wardrobe_API\Data\obj\Debug\net8.0\ref\Data.dll
+F:\For VS\Wardrobe_API\Data\obj\Debug\net8.0\Data.sourcelink.json

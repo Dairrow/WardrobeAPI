@@ -70,6 +70,7 @@ public class CategoriesController : ControllerBase
 
 
     [HttpPost]
+    [Authorize(Roles = "Admin")]
     [ProducesResponseType(201)]
     [ProducesResponseType(400)]
     public async Task<ActionResult<CategoryDto>> Create(
@@ -97,6 +98,7 @@ public class CategoriesController : ControllerBase
     }
 
     [HttpPut("{id:int}")]
+    [Authorize(Roles = "Admin")]
     [ProducesResponseType(200)]
     [ProducesResponseType(404)]
     public async Task<ActionResult<
@@ -122,6 +124,7 @@ public class CategoriesController : ControllerBase
 
 
     [HttpDelete("{id:int}")]
+    [Authorize(Roles = "Admin")]
     [ProducesResponseType(204)]
     [ProducesResponseType(404)]
     public async Task<IActionResult>

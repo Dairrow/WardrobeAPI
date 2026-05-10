@@ -20,6 +20,8 @@ public static class ServiceExtensions
 
         services.AddScoped<ICategoryService, CategoryService>();
 
+        services.AddScoped<IFileService,FileService>();
+
         services.AddScoped<IBrandService, BrandService>();
 
         services.AddScoped<IClothingItemService, ClothingItemService>();

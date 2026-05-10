@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Http;
 
-namespace Services.Interfaces
+namespace Wardrobe.Services.Interfaces;
+
+public interface IFileService
 {
-    internal class IFileService
-    {
-    }
+    Task<string> UploadImageAsync(
+        IFormFile file);
+
+
+    Task DeleteFileAsync(
+        string filePath);
 }

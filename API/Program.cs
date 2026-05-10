@@ -1,7 +1,7 @@
 using Wardrobe.API.Extensions;
 using Wardrobe.Repositories.DependencyInjection;
 using Wardrobe.Services.DependencyInjection;
-using Wardrobe.Services.Interfaces;
+using Wardrobe.Repositories.Seed;
 using Wardrobe.API.Profiles;
 using Microsoft.OpenApi.Models;
 
@@ -77,5 +77,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+await DatabaseSeeder.SeedAsync(app.Services);
 
 app.Run();

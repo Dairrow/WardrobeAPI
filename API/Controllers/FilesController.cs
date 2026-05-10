@@ -23,6 +23,7 @@ public class FilesController
 
 
     [HttpPost("upload")]
+    [Authorize(Roles = "Admin")]
     [ProducesResponseType(200)]
     [ProducesResponseType(400)]
     public async Task<ActionResult<
@@ -46,6 +47,7 @@ public class FilesController
 
 
     [HttpDelete]
+    [Authorize(Roles = "Admin")]
     [ProducesResponseType(204)]
     public async Task<IActionResult>
         Delete(

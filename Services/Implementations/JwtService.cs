@@ -10,69 +10,69 @@ namespace Wardrobe.Services.Implementations;
 
 public class JwtService : IJwtService
 {
-    private readonly IConfiguration _configuration;
+	private readonly IConfiguration _configuration;
 
 
-    public JwtService(
-        IConfiguration configuration)
-    {
-        _configuration = configuration;
-    }
+	public JwtService(
+		IConfiguration configuration)
+	{
+		_configuration = configuration;
+	}
 
 
-    public string GenerateToken(
-        User user)
-    {
-        var key =
-            new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes(
-                    _configuration["JwtSettings:SecretKey"]!));
+	public string GenerateToken(
+		User user)
+	{
+		var key =
+			new SymmetricSecurityKey(
+				Encoding.UTF8.GetBytes(
+					_configuration["JwtSettings:SecretKey"]!));
 
 
-        var credentials =
-            new SigningCredentials(
-                key,
-                SecurityAlgorithms.HmacSha256);
+		var credentials =
+			new SigningCredentials(
+				key,
+				SecurityAlgorithms.HmacSha256);
 
 
-        var claims =
-            new List<Claim>
-            {
-                new(ClaimTypes.NameIdentifier,
-                    user.Id.ToString()),
+		var claims =
+			new List<Claim>
+			{
+				new(ClaimTypes.NameIdentifier,
+					user.Id.ToString()),
 
-                new(ClaimTypes.Email,
-                    user.Email),
+				new(ClaimTypes.Email,
+					user.Email),
 
-                new(ClaimTypes.Role,
-                    user.Role.Name)
-            };
-
-
-        var token =
-            new JwtSecurityToken(
-                issuer:
-                    _configuration[
-                        "JwtSettings:Issuer"],
-
-                audience:
-                    _configuration[
-                        "JwtSettings:Audience"],
-
-                claims:
-                    claims,
-
-                expires:
-                    DateTime.UtcNow.AddMinutes(
-                        int.Parse(
-                            _configuration[
-                                "JwtSettings:ExpirationInMinutes"]!)),
-
-                signingCredentials:
-                    credentials);
+				new(ClaimTypes.Role,
+					user.Role.Name)
+			};
 
 
-        return new JwtSecurityTokenHandler()
-            .WriteToken(token);
-    }
+		var token =
+			new JwtSecurityToken(
+				issuer:
+					_configuration[
+						"JwtSettings:Issuer"],
+
+				audience:
+					_configuration[
+						"JwtSettings:Audience"],
+
+				claims:
+					claims,
+
+				expires:
+					DateTime.UtcNow.AddMinutes(
+						int.Parse(
+							_configuration[
+								"JwtSettings:ExpirationInMinutes"]!)),
+
+				signingCredentials:
+					credentials);
+
+
+		return new JwtSecurityTokenHandler()
+			.WriteToken(token);
+	}
 }

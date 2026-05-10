@@ -1,6 +1,6 @@
 ﻿namespace API.Middleware
 {
-    public class RequestLoggingMiddleware
-    {
-    }
+	public class RequestLoggingMiddleware
+	{
+	}
 }

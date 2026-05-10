@@ -5,11 +5,11 @@ using Wardrobe.Repositories.Interfaces;
 namespace Wardrobe.Repositories.Implementations;
 
 public class BrandRepository
-    : BaseRepository<Brand>,
-      IBrandRepository
+	: BaseRepository<Brand>,
+	  IBrandRepository
 {
-    public BrandRepository(AppDbContext context)
-        : base(context)
-    {
-    }
+	public BrandRepository(AppDbContext context)
+		: base(context)
+	{
+	}
 }

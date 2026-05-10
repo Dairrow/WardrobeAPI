@@ -4,7 +4,7 @@ namespace Wardrobe.API.DTOs.Outfits;
 
 public class CreateOutfitDto
 {
-    [Required]
-    [StringLength(100)]
-    public string Name { get; set; } = null!;
+	[Required]
+	[StringLength(100)]
+	public string Name { get; set; } = null!;
 }

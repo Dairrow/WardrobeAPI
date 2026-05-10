@@ -3,6 +3,6 @@
 namespace Wardrobe.Repositories.Interfaces;
 
 public interface ICategoryRepository
-    : IBaseRepository<Category>
+	: IBaseRepository<Category>
 {
 }

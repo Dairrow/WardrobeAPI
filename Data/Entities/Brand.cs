@@ -4,11 +4,11 @@ using Wardrobe.Data.Common;
 
 namespace Wardrobe.Data.Entities
 {
-    public class Brand : BaseEntity
-    {
-        public string Name { get; set; } = null!;
+	public class Brand : BaseEntity
+	{
+		public string Name { get; set; } = null!;
 
 
-        public ICollection<ClothingItem> ClothingItems { get; set; } = new List<ClothingItem>();
-    }
+		public ICollection<ClothingItem> ClothingItems { get; set; } = new List<ClothingItem>();
+	}
 }

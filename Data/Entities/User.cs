@@ -4,23 +4,23 @@ using Wardrobe.Data.Common;
 
 namespace Wardrobe.Data.Entities
 {
-    public class User : BaseEntity
-    {
-        public string Username { get; set; } = null!;
+	public class User : BaseEntity
+	{
+		public string Username { get; set; } = null!;
 
-        public string Email { get; set; } = null!;
+		public string Email { get; set; } = null!;
 
-        public string PasswordHash { get; set; } = null!;
-
-
-        public int RoleId { get; set; }
+		public string PasswordHash { get; set; } = null!;
 
 
-        public Role Role { get; set; } = null!;
+		public int RoleId { get; set; }
 
 
-        public ICollection<ClothingItem> ClothingItems { get; set; } = new List<ClothingItem>();
+		public Role Role { get; set; } = null!;
 
-        public ICollection<Outfit> Outfits { get; set; } = new List<Outfit>();
-    }
+
+		public ICollection<ClothingItem> ClothingItems { get; set; } = new List<ClothingItem>();
+
+		public ICollection<Outfit> Outfits { get; set; } = new List<Outfit>();
+	}
 }

@@ -3,6 +3,6 @@
 namespace Wardrobe.Repositories.Interfaces;
 
 public interface IBrandRepository
-    : IBaseRepository<Brand>
+	: IBaseRepository<Brand>
 {
 }

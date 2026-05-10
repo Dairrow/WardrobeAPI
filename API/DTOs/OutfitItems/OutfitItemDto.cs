@@ -2,7 +2,7 @@
 
 public class OutfitItemDto
 {
-    public int OutfitId { get; set; }
+	public int OutfitId { get; set; }
 
-    public int ClothingItemId { get; set; }
+	public int ClothingItemId { get; set; }
 }

@@ -4,9 +4,9 @@ namespace Wardrobe.Services.Interfaces;
 
 public interface IRoleService
 {
-    Task<Role?> GetByIdAsync(int id);
+	Task<Role?> GetByIdAsync(int id);
 
-    Task<Role?> GetByNameAsync(string name);
+	Task<Role?> GetByNameAsync(string name);
 
-    Task<IEnumerable<Role>> GetAllAsync();
+	Task<IEnumerable<Role>> GetAllAsync();
 }

@@ -6,48 +6,48 @@ namespace Wardrobe.API.Extensions;
 
 public static class JwtExtensions
 {
-    public static IServiceCollection AddJwt(
-        this IServiceCollection services,
-        IConfiguration configuration)
-    {
-        var key =
-            Encoding.UTF8.GetBytes(
-                configuration[
-                    "JwtSettings:SecretKey"]!);
+	public static IServiceCollection AddJwt(
+		this IServiceCollection services,
+		IConfiguration configuration)
+	{
+		var key =
+			Encoding.UTF8.GetBytes(
+				configuration[
+					"JwtSettings:SecretKey"]!);
 
 
-        services.AddAuthentication(
-                JwtBearerDefaults
-                    .AuthenticationScheme)
-            .AddJwtBearer(
-                options =>
-                {
-                    options.TokenValidationParameters =
-                        new TokenValidationParameters
-                        {
-                            ValidateIssuer = true,
+		services.AddAuthentication(
+				JwtBearerDefaults
+					.AuthenticationScheme)
+			.AddJwtBearer(
+				options =>
+				{
+					options.TokenValidationParameters =
+						new TokenValidationParameters
+						{
+							ValidateIssuer = true,
 
-                            ValidateAudience = true,
+							ValidateAudience = true,
 
-                            ValidateLifetime = true,
+							ValidateLifetime = true,
 
-                            ValidateIssuerSigningKey = true,
+							ValidateIssuerSigningKey = true,
 
-                            ValidIssuer =
-                                configuration[
-                                    "JwtSettings:Issuer"],
+							ValidIssuer =
+								configuration[
+									"JwtSettings:Issuer"],
 
-                            ValidAudience =
-                                configuration[
-                                    "JwtSettings:Audience"],
+							ValidAudience =
+								configuration[
+									"JwtSettings:Audience"],
 
-                            IssuerSigningKey =
-                                new SymmetricSecurityKey(
-                                    key)
-                        };
-                });
+							IssuerSigningKey =
+								new SymmetricSecurityKey(
+									key)
+						};
+				});
 
 
-        return services;
-    }
+		return services;
+	}
 }

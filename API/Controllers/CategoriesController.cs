@@ -12,129 +12,129 @@ namespace Wardrobe.API.Controllers;
 [Route("api/[controller]")]
 public class CategoriesController : ControllerBase
 {
-    private readonly ICategoryService _service;
+	private readonly ICategoryService _service;
 
-    private readonly IMapper _mapper;
-
-
-    public CategoriesController(
-        ICategoryService service,
-        IMapper mapper)
-    {
-        _service = service;
-
-        _mapper = mapper;
-    }
+	private readonly IMapper _mapper;
 
 
-    [HttpGet]
-    [ProducesResponseType(200)]
-    public async Task<ActionResult<IEnumerable<CategoryDto>>> GetAll()
-    {
-        var categories =
-            await _service.GetAllAsync();
+	public CategoriesController(
+		ICategoryService service,
+		IMapper mapper)
+	{
+		_service = service;
+
+		_mapper = mapper;
+	}
 
 
-        var result =
-            _mapper.Map<IEnumerable<CategoryDto>>(
-                categories);
+	[HttpGet]
+	[ProducesResponseType(200)]
+	public async Task<ActionResult<IEnumerable<CategoryDto>>> GetAll()
+	{
+		var categories =
+			await _service.GetAllAsync();
 
 
-        return Ok(result);
-    }
+		var result =
+			_mapper.Map<IEnumerable<CategoryDto>>(
+				categories);
 
 
-    [HttpGet("{id:int}")]
-    [ProducesResponseType(200)]
-    [ProducesResponseType(404)]
-    public async Task<ActionResult<CategoryDto>> GetById(
-        int id)
-    {
-        var category =
-            await _service.GetByIdAsync(id);
+		return Ok(result);
+	}
 
 
-        if (category is null)
-        {
-            return NotFound();
-        }
+	[HttpGet("{id:int}")]
+	[ProducesResponseType(200)]
+	[ProducesResponseType(404)]
+	public async Task<ActionResult<CategoryDto>> GetById(
+		int id)
+	{
+		var category =
+			await _service.GetByIdAsync(id);
 
 
-        var result =
-            _mapper.Map<CategoryDto>(
-                category);
+		if (category is null)
+		{
+			return NotFound();
+		}
 
 
-        return Ok(result);
-    }
+		var result =
+			_mapper.Map<CategoryDto>(
+				category);
 
 
-    [HttpPost]
-    [Authorize(Roles = "Admin")]
-    [ProducesResponseType(201)]
-    [ProducesResponseType(400)]
-    public async Task<ActionResult<CategoryDto>> Create(
-        CreateCategoryDto dto)
-    {
-        var category =
-            _mapper.Map<Category>(
-                dto);
+		return Ok(result);
+	}
 
 
-        var created =
-            await _service.CreateAsync(
-                category);
+	[HttpPost]
+	[Authorize(Roles = "Admin")]
+	[ProducesResponseType(201)]
+	[ProducesResponseType(400)]
+	public async Task<ActionResult<CategoryDto>> Create(
+		CreateCategoryDto dto)
+	{
+		var category =
+			_mapper.Map<Category>(
+				dto);
 
 
-        var result =
-            _mapper.Map<CategoryDto>(
-                created);
+		var created =
+			await _service.CreateAsync(
+				category);
 
 
-        return CreatedAtAction(
-            nameof(GetById),
-            new { id = result.Id },
-            result);
-    }
-
-    [HttpPut("{id:int}")]
-    [Authorize(Roles = "Admin")]
-    [ProducesResponseType(200)]
-    [ProducesResponseType(404)]
-    public async Task<ActionResult<
-    CategoryDto>> Update(
-        int id,
-        UpdateCategoryDto dto)
-    {
-        var entity =
-            _mapper.Map<Category>(
-                dto);
+		var result =
+			_mapper.Map<CategoryDto>(
+				created);
 
 
-        var updated =
-            await _service.UpdateAsync(
-                id,
-                entity);
+		return CreatedAtAction(
+			nameof(GetById),
+			new { id = result.Id },
+			result);
+	}
+
+	[HttpPut("{id:int}")]
+	[Authorize(Roles = "Admin")]
+	[ProducesResponseType(200)]
+	[ProducesResponseType(404)]
+	public async Task<ActionResult<
+	CategoryDto>> Update(
+		int id,
+		UpdateCategoryDto dto)
+	{
+		var entity =
+			_mapper.Map<Category>(
+				dto);
 
 
-        return Ok(
-            _mapper.Map<CategoryDto>(
-                updated));
-    }
+		var updated =
+			await _service.UpdateAsync(
+				id,
+				entity);
 
 
-    [HttpDelete("{id:int}")]
-    [Authorize(Roles = "Admin")]
-    [ProducesResponseType(204)]
-    [ProducesResponseType(404)]
-    public async Task<IActionResult>
-        Delete(
-            int id)
-    {
-        await _service.DeleteAsync(
-            id);
+		return Ok(
+			_mapper.Map<CategoryDto>(
+				updated));
+	}
 
 
-        return NoContent();
-    }
+	[HttpDelete("{id:int}")]
+	[Authorize(Roles = "Admin")]
+	[ProducesResponseType(204)]
+	[ProducesResponseType(404)]
+	public async Task<IActionResult>
+		Delete(
+			int id)
+	{
+		await _service.DeleteAsync(
+			id);
+
+
+		return NoContent();
+	}
 }

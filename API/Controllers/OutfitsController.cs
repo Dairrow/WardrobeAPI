@@ -12,109 +12,109 @@ namespace Wardrobe.API.Controllers;
 [Authorize]
 [Route("api/[controller]")]
 public class OutfitsController 
-    : ControllerBase
+	: ControllerBase
 {
-    private readonly IOutfitService _service;
+	private readonly IOutfitService _service;
 
-    private readonly IMapper _mapper;
-
-
-    public OutfitsController(
-        IOutfitService service,
-        IMapper mapper)
-    {
-        _service = service;
-
-        _mapper = mapper;
-    }
-
-    [HttpGet]
-    public async Task<IActionResult> GetAll()
-    {
-        var userId = GetCurrentUserId();
-
-        var outfits = await _service.GetByUserIdAsync(userId);
-
-        return Ok(_mapper.Map<IEnumerable<OutfitDto>>(outfits));
-    }
-
-    [HttpGet("{id:int}")]
-    public async Task<IActionResult> GetById(int id)
-    {
-        var userId = GetCurrentUserId();
-
-        var outfit = await _service.GetByIdAsync(id, userId);
-
-        if (outfit is null)
-        {
-            return NotFound();
-        }
-
-        return Ok(_mapper.Map<OutfitDto>(outfit));
-    }
-
-    [HttpPost]
-    public async Task<IActionResult> Create(CreateOutfitDto dto)
-    {
-        var entity = _mapper.Map<Outfit>(dto);
-
-        entity.UserId = GetCurrentUserId();
-
-        var created = await _service.CreateAsync(entity);
-
-        return CreatedAtAction(
-            nameof(GetById),
-            new { id = created.Id },
-            _mapper.Map<OutfitDto>(created));
-    }
+	private readonly IMapper _mapper;
 
 
-    [HttpPut("{id:int}")]
-    public async Task<ActionResult<
-        OutfitDto>> Update(
-            int id,
-            UpdateOutfitDto dto)
-    {
-        var entity =
-            _mapper.Map<
-                Outfit>(
-                    dto);
+	public OutfitsController(
+		IOutfitService service,
+		IMapper mapper)
+	{
+		_service = service;
+
+		_mapper = mapper;
+	}
+
+	[HttpGet]
+	public async Task<IActionResult> GetAll()
+	{
+		var userId = GetCurrentUserId();
+
+		var outfits = await _service.GetByUserIdAsync(userId);
+
+		return Ok(_mapper.Map<IEnumerable<OutfitDto>>(outfits));
+	}
+
+	[HttpGet("{id:int}")]
+	public async Task<IActionResult> GetById(int id)
+	{
+		var userId = GetCurrentUserId();
+
+		var outfit = await _service.GetByIdAsync(id, userId);
+
+		if (outfit is null)
+		{
+			return NotFound();
+		}
+
+		return Ok(_mapper.Map<OutfitDto>(outfit));
+	}
+
+	[HttpPost]
+	public async Task<IActionResult> Create(CreateOutfitDto dto)
+	{
+		var entity = _mapper.Map<Outfit>(dto);
+
+		entity.UserId = GetCurrentUserId();
+
+		var created = await _service.CreateAsync(entity);
+
+		return CreatedAtAction(
+			nameof(GetById),
+			new { id = created.Id },
+			_mapper.Map<OutfitDto>(created));
+	}
 
 
-        var updated =
-            await _service.UpdateAsync(
-                id,
-                entity);
+	[HttpPut("{id:int}")]
+	public async Task<ActionResult<
+		OutfitDto>> Update(
+			int id,
+			UpdateOutfitDto dto)
+	{
+		var entity =
+			_mapper.Map<
+				Outfit>(
+					dto);
 
 
-        return Ok(
-            _mapper.Map<
-                OutfitDto>(
-                    updated));
-    }
+		var updated =
+			await _service.UpdateAsync(
+				id,
+				entity);
 
 
-    [HttpDelete("{id:int}")]
-    public async Task<IActionResult>
-        Delete(
-            int id)
-    {
-        await _service.DeleteAsync(
-            id);
+		return Ok(
+			_mapper.Map<
+				OutfitDto>(
+					updated));
+	}
 
 
-        return NoContent();
-    }
+	[HttpDelete("{id:int}")]
+	public async Task<IActionResult>
+		Delete(
+			int id)
+	{
+		await _service.DeleteAsync(
+			id);
 
-    protected int GetCurrentUserId()
-    {
-        var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-        if (string.IsNullOrEmpty(userIdClaim) || !int.TryParse(userIdClaim, out int userId))
-        {
-            throw new UnauthorizedAccessException("User ID not found in token");
-        }
+		return NoContent();
+	}
 
-        return userId;
-    }
+	protected int GetCurrentUserId()
+	{
+		var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+		if (string.IsNullOrEmpty(userIdClaim) || !int.TryParse(userIdClaim, out int userId))
+		{
+			throw new UnauthorizedAccessException("User ID not found in token");
+		}
+
+		return userId;
+	}
 }

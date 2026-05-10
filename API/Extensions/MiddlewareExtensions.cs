@@ -4,14 +4,14 @@ namespace Wardrobe.API.Extensions;
 
 public static class MiddlewareExtensions
 {
-    public static IApplicationBuilder
-        UseGlobalExceptionHandling(
-            this IApplicationBuilder app)
-    {
-        app.UseMiddleware<
-            ExceptionMiddleware>();
+	public static IApplicationBuilder
+		UseGlobalExceptionHandling(
+			this IApplicationBuilder app)
+	{
+		app.UseMiddleware<
+			ExceptionMiddleware>();
 
 
-        return app;
-    }
+		return app;
+	}
 }

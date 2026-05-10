@@ -2,15 +2,15 @@
 
 public class ClothingItemDto
 {
-    public int Id { get; set; }
+	public int Id { get; set; }
 
-    public string Name { get; set; } = null!;
+	public string Name { get; set; } = null!;
 
-    public decimal Price { get; set; }
+	public decimal Price { get; set; }
 
-    public string CategoryName { get; set; } = null!;
+	public string CategoryName { get; set; } = null!;
 
-    public string BrandName { get; set; } = null!;
+	public string BrandName { get; set; } = null!;
 
-    public string? ImagePath { get; set; }
+	public string? ImagePath { get; set; }
 }

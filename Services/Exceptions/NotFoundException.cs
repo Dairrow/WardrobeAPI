@@ -1,11 +1,11 @@
 ﻿namespace Wardrobe.Services.Exceptions;
 
 public class NotFoundException
-    : Exception
+	: Exception
 {
-    public NotFoundException(
-        string message)
-        : base(message)
-    {
-    }
+	public NotFoundException(
+		string message)
+		: base(message)
+	{
+	}
 }

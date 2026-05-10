@@ -1,11 +1,11 @@
 ﻿namespace Wardrobe.Services.Exceptions;
 
 public class UnauthorizedException
-    : Exception
+	: Exception
 {
-    public UnauthorizedException(
-        string message)
-        : base(message)
-    {
-    }
+	public UnauthorizedException(
+		string message)
+		: base(message)
+	{
+	}
 }

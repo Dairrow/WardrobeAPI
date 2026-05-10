@@ -11,50 +11,50 @@ namespace Wardrobe.API.Controllers;
 [Route("api/[controller]")]
 public class RolesController : ControllerBase
 {
-    private readonly IRoleService _service;
+	private readonly IRoleService _service;
 
-    private readonly IMapper _mapper;
-
-
-    public RolesController(
-        IRoleService service,
-        IMapper mapper)
-    {
-        _service = service;
-
-        _mapper = mapper;
-    }
+	private readonly IMapper _mapper;
 
 
-    [HttpGet]
-    public async Task<ActionResult<IEnumerable<RoleDto>>> GetAll()
-    {
-        var roles =
-            await _service.GetAllAsync();
+	public RolesController(
+		IRoleService service,
+		IMapper mapper)
+	{
+		_service = service;
+
+		_mapper = mapper;
+	}
 
 
-        return Ok(
-            _mapper.Map<IEnumerable<RoleDto>>(
-                roles));
-    }
+	[HttpGet]
+	public async Task<ActionResult<IEnumerable<RoleDto>>> GetAll()
+	{
+		var roles =
+			await _service.GetAllAsync();
 
 
-    [HttpGet("{id:int}")]
-    public async Task<ActionResult<RoleDto>> GetById(
-        int id)
-    {
-        var role =
-            await _service.GetByIdAsync(id);
+		return Ok(
+			_mapper.Map<IEnumerable<RoleDto>>(
+				roles));
+	}
 
 
-        if (role is null)
-        {
-            return NotFound();
-        }
+	[HttpGet("{id:int}")]
+	public async Task<ActionResult<RoleDto>> GetById(
+		int id)
+	{
+		var role =
+			await _service.GetByIdAsync(id);
 
 
-        return Ok(
-            _mapper.Map<RoleDto>(
-                role));
-    }
+		if (role is null)
+		{
+			return NotFound();
+		}
+
+
+		return Ok(
+			_mapper.Map<RoleDto>(
+				role));
+	}
 }

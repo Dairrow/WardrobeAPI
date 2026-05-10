@@ -4,10 +4,10 @@ namespace Wardrobe.Services.Interfaces;
 
 public interface IFileService
 {
-    Task<string> UploadImageAsync(
-        IFormFile file);
+	Task<string> UploadImageAsync(
+		IFormFile file);
 
 
-    Task DeleteFileAsync(
-        string filePath);
+	Task DeleteFileAsync(
+		string filePath);
 }

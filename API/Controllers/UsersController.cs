@@ -12,111 +12,111 @@ namespace Wardrobe.API.Controllers;
 [Route("api/[controller]")]
 public class UsersController : ControllerBase
 {
-    private readonly IUserService _service;
+	private readonly IUserService _service;
 
-    private readonly IMapper _mapper;
-
-
-    public UsersController(
-        IUserService service,
-        IMapper mapper)
-    {
-        _service = service;
-
-        _mapper = mapper;
-    }
+	private readonly IMapper _mapper;
 
 
-    [HttpGet]
-    public async Task<ActionResult<IEnumerable<UserDto>>> GetAll()
-    {
-        var users =
-            await _service.GetAllAsync();
+	public UsersController(
+		IUserService service,
+		IMapper mapper)
+	{
+		_service = service;
+
+		_mapper = mapper;
+	}
 
 
-        return Ok(
-            _mapper.Map<IEnumerable<UserDto>>(
-                users));
-    }
+	[HttpGet]
+	public async Task<ActionResult<IEnumerable<UserDto>>> GetAll()
+	{
+		var users =
+			await _service.GetAllAsync();
 
 
-    [HttpGet("{id:int}")]
-    public async Task<ActionResult<UserDto>> GetById(
-        int id)
-    {
-        var user =
-            await _service.GetByIdAsync(id);
+		return Ok(
+			_mapper.Map<IEnumerable<UserDto>>(
+				users));
+	}
 
 
-        if (user is null)
-        {
-            return NotFound();
-        }
+	[HttpGet("{id:int}")]
+	public async Task<ActionResult<UserDto>> GetById(
+		int id)
+	{
+		var user =
+			await _service.GetByIdAsync(id);
 
 
-        return Ok(
-            _mapper.Map<UserDto>(
-                user));
-    }
+		if (user is null)
+		{
+			return NotFound();
+		}
 
 
-    [HttpPost]
-    public async Task<ActionResult<UserDto>> Create(
-        CreateUserDto dto)
-    {
-        var entity =
-            _mapper.Map<User>(
-                dto);
+		return Ok(
+			_mapper.Map<UserDto>(
+				user));
+	}
 
 
-        var created =
-            await _service.CreateAsync(
-                entity);
+	[HttpPost]
+	public async Task<ActionResult<UserDto>> Create(
+		CreateUserDto dto)
+	{
+		var entity =
+			_mapper.Map<User>(
+				dto);
 
 
-        var result =
-            _mapper.Map<UserDto>(
-                created);
+		var created =
+			await _service.CreateAsync(
+				entity);
 
 
-        return CreatedAtAction(
-            nameof(GetById),
-            new { id = result.Id },
-            result);
-    }
-
-    [HttpPut("{id:int}")]
-    public async Task<ActionResult<
-    UserDto>> Update(
-        int id,
-        UpdateUserDto dto)
-    {
-        var entity =
-            _mapper.Map<User>(
-                dto);
+		var result =
+			_mapper.Map<UserDto>(
+				created);
 
 
-        var updated =
-            await _service.UpdateAsync(
-                id,
-                entity);
+		return CreatedAtAction(
+			nameof(GetById),
+			new { id = result.Id },
+			result);
+	}
+
+	[HttpPut("{id:int}")]
+	public async Task<ActionResult<
+	UserDto>> Update(
+		int id,
+		UpdateUserDto dto)
+	{
+		var entity =
+			_mapper.Map<User>(
+				dto);
 
 
-        return Ok(
-            _mapper.Map<UserDto>(
-                updated));
-    }
+		var updated =
+			await _service.UpdateAsync(
+				id,
+				entity);
 
 
-    [HttpDelete("{id:int}")]
-    public async Task<IActionResult>
-        Delete(
-            int id)
-    {
-        await _service.DeleteAsync(
-            id);
+		return Ok(
+			_mapper.Map<UserDto>(
+				updated));
+	}
 
 
-        return NoContent();
-    }
+	[HttpDelete("{id:int}")]
+	public async Task<IActionResult>
+		Delete(
+			int id)
+	{
+		await _service.DeleteAsync(
+			id);
+
+
+		return NoContent();
+	}
 }

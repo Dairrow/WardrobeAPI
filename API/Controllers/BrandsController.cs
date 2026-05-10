@@ -12,114 +12,114 @@ namespace Wardrobe.API.Controllers;
 [Route("api/[controller]")]
 public class BrandsController : ControllerBase
 {
-    private readonly IBrandService _service;
+	private readonly IBrandService _service;
 
-    private readonly IMapper _mapper;
-
-
-    public BrandsController(
-        IBrandService service,
-        IMapper mapper)
-    {
-        _service = service;
-
-        _mapper = mapper;
-    }
+	private readonly IMapper _mapper;
 
 
-    [HttpGet]
-    public async Task<ActionResult<IEnumerable<BrandDto>>> GetAll()
-    {
-        var brands =
-            await _service.GetAllAsync();
+	public BrandsController(
+		IBrandService service,
+		IMapper mapper)
+	{
+		_service = service;
+
+		_mapper = mapper;
+	}
 
 
-        return Ok(
-            _mapper.Map<IEnumerable<BrandDto>>(
-                brands));
-    }
+	[HttpGet]
+	public async Task<ActionResult<IEnumerable<BrandDto>>> GetAll()
+	{
+		var brands =
+			await _service.GetAllAsync();
 
 
-    [HttpGet("{id:int}")]
-    public async Task<ActionResult<BrandDto>> GetById(
-        int id)
-    {
-        var brand =
-            await _service.GetByIdAsync(id);
+		return Ok(
+			_mapper.Map<IEnumerable<BrandDto>>(
+				brands));
+	}
 
 
-        if (brand is null)
-        {
-            return NotFound();
-        }
+	[HttpGet("{id:int}")]
+	public async Task<ActionResult<BrandDto>> GetById(
+		int id)
+	{
+		var brand =
+			await _service.GetByIdAsync(id);
 
 
-        return Ok(
-            _mapper.Map<BrandDto>(
-                brand));
-    }
+		if (brand is null)
+		{
+			return NotFound();
+		}
 
 
-    [HttpPost]
-    [Authorize(Roles = "Admin")]
-    public async Task<ActionResult<BrandDto>> Create(
-        CreateBrandDto dto)
-    {
-        var entity =
-            _mapper.Map<Brand>(
-                dto);
+		return Ok(
+			_mapper.Map<BrandDto>(
+				brand));
+	}
 
 
-        var created =
-            await _service.CreateAsync(
-                entity);
+	[HttpPost]
+	[Authorize(Roles = "Admin")]
+	public async Task<ActionResult<BrandDto>> Create(
+		CreateBrandDto dto)
+	{
+		var entity =
+			_mapper.Map<Brand>(
+				dto);
 
 
-        var result =
-            _mapper.Map<BrandDto>(
-                created);
+		var created =
+			await _service.CreateAsync(
+				entity);
 
 
-        return CreatedAtAction(
-            nameof(GetById),
-            new { id = result.Id },
-            result);
-    }
-
-    [HttpPut("{id:int}")]
-    [Authorize(Roles = "Admin")]
-    public async Task<ActionResult<
-    BrandDto>> Update(
-        int id,
-        UpdateBrandDto dto)
-    {
-        var entity =
-            _mapper.Map<Brand>(
-                dto);
+		var result =
+			_mapper.Map<BrandDto>(
+				created);
 
 
-        var updated =
-            await _service.UpdateAsync(
-                id,
-                entity);
+		return CreatedAtAction(
+			nameof(GetById),
+			new { id = result.Id },
+			result);
+	}
+
+	[HttpPut("{id:int}")]
+	[Authorize(Roles = "Admin")]
+	public async Task<ActionResult<
+	BrandDto>> Update(
+		int id,
+		UpdateBrandDto dto)
+	{
+		var entity =
+			_mapper.Map<Brand>(
+				dto);
 
 
-        return Ok(
-            _mapper.Map<BrandDto>(
-                updated));
-    }
+		var updated =
+			await _service.UpdateAsync(
+				id,
+				entity);
 
 
-    [HttpDelete("{id:int}")]
-    [Authorize(Roles = "Admin")]
-    public async Task<IActionResult>
-        Delete(
-            int id)
-    {
-        await _service.DeleteAsync(
-            id);
+		return Ok(
+			_mapper.Map<BrandDto>(
+				updated));
+	}
 
 
-        return NoContent();
-    }
+	[HttpDelete("{id:int}")]
+	[Authorize(Roles = "Admin")]
+	public async Task<IActionResult>
+		Delete(
+			int id)
+	{
+		await _service.DeleteAsync(
+			id);
+
+
+		return NoContent();
+	}
 }

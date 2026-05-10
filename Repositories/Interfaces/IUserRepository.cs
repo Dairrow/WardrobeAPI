@@ -3,7 +3,7 @@
 namespace Wardrobe.Repositories.Interfaces;
 
 public interface IUserRepository
-    : IBaseRepository<User>
+	: IBaseRepository<User>
 {
-    Task<User?> GetByEmailAsync(string email);
+	Task<User?> GetByEmailAsync(string email);
 }

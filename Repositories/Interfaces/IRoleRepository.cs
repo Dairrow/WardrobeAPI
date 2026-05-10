@@ -3,7 +3,7 @@
 namespace Wardrobe.Repositories.Interfaces;
 
 public interface IRoleRepository
-    : IBaseRepository<Role>
+	: IBaseRepository<Role>
 {
-    Task<Role?> GetByNameAsync(string name);
+	Task<Role?> GetByNameAsync(string name);
 }

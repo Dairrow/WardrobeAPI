@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Data.Enums
 {
-    internal class ClothingSize
-    {
-    }
+	internal class ClothingSize
+	{
+	}
 }

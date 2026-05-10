@@ -4,6 +4,6 @@ namespace Wardrobe.API.DTOs.Outfits;
 
 public class UpdateOutfitDto
 {
-    [Required]
-    public string Name { get; set; } = null!;
+	[Required]
+	public string Name { get; set; } = null!;
 }

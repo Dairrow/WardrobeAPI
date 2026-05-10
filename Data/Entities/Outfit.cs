@@ -4,17 +4,17 @@ using Wardrobe.Data.Common;
 
 namespace Wardrobe.Data.Entities
 {
-    public class Outfit : BaseEntity
-    {
-        public string Name { get; set; } = null!;
+	public class Outfit : BaseEntity
+	{
+		public string Name { get; set; } = null!;
 
 
-        public int UserId { get; set; }
+		public int UserId { get; set; }
 
 
-        public User User { get; set; } = null!;
+		public User User { get; set; } = null!;
 
 
-        public ICollection<OutfitItem> OutfitItems { get; set; } = new List<OutfitItem>();
-    }
+		public ICollection<OutfitItem> OutfitItems { get; set; } = new List<OutfitItem>();
+	}
 }

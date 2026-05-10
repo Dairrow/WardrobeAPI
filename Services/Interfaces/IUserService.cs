@@ -4,19 +4,19 @@ namespace Wardrobe.Services.Interfaces;
 
 public interface IUserService
 {
-    Task<User?> GetByIdAsync(int id);
+	Task<User?> GetByIdAsync(int id);
 
-    Task<User?> GetByEmailAsync(string email);
+	Task<User?> GetByEmailAsync(string email);
 
-    Task<User> CreateAsync(User user);
+	Task<User> CreateAsync(User user);
 
-    Task<IEnumerable<User>> GetAllAsync();
+	Task<IEnumerable<User>> GetAllAsync();
 
-    Task<User> UpdateAsync(
-    int id,
-    User user);
+	Task<User> UpdateAsync(
+	int id,
+	User user);
 
 
-    Task DeleteAsync(
-        int id);
+	Task DeleteAsync(
+		int id);
 }

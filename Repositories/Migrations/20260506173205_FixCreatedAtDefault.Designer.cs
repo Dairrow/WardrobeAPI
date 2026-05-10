@@ -11,332 +11,332 @@ using Wardrobe.Repositories.Context;
 
 namespace Repositories.Migrations
 {
-    [DbContext(typeof(AppDbContext))]
-    [Migration("20260506173205_FixCreatedAtDefault")]
-    partial class FixCreatedAtDefault
-    {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
-        {
+	[DbContext(typeof(AppDbContext))]
+	[Migration("20260506173205_FixCreatedAtDefault")]
+	partial class FixCreatedAtDefault
+	{
+		/// <inheritdoc />
+		protected override void BuildTargetModel(ModelBuilder modelBuilder)
+		{
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.10")
-                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+			modelBuilder
+				.HasAnnotation("ProductVersion", "9.0.10")
+				.HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+			NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Wardrobe.Data.Entities.Brand", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+			modelBuilder.Entity("Wardrobe.Data.Entities.Brand", b =>
+				{
+					b.Property<int>("Id")
+						.ValueGeneratedOnAdd()
+						.HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+					NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone");
+					b.Property<DateTime>("CreatedAt")
+						.ValueGeneratedOnAdd()
+						.HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
+					b.Property<string>("Name")
+						.IsRequired()
+						.HasMaxLength(100)
+						.HasColumnType("character varying(100)");
 
-                    b.HasKey("Id");
+					b.HasKey("Id");
 
-                    b.HasIndex("Name")
-                        .IsUnique();
+					b.HasIndex("Name")
+						.IsUnique();
 
-                    b.ToTable("brands", (string)null);
-                });
+					b.ToTable("brands", (string)null);
+				});
 
-            modelBuilder.Entity("Wardrobe.Data.Entities.Category", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+			modelBuilder.Entity("Wardrobe.Data.Entities.Category", b =>
+				{
+					b.Property<int>("Id")
+						.ValueGeneratedOnAdd()
+						.HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+					NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone");
+					b.Property<DateTime>("CreatedAt")
+						.ValueGeneratedOnAdd()
+						.HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
+					b.Property<string>("Name")
+						.IsRequired()
+						.HasMaxLength(100)
+						.HasColumnType("character varying(100)");
 
-                    b.HasKey("Id");
+					b.HasKey("Id");
 
-                    b.HasIndex("Name")
-                        .IsUnique();
+					b.HasIndex("Name")
+						.IsUnique();
 
-                    b.ToTable("categories", (string)null);
-                });
+					b.ToTable("categories", (string)null);
+				});
 
-            modelBuilder.Entity("Wardrobe.Data.Entities.ClothingItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+			modelBuilder.Entity("Wardrobe.Data.Entities.ClothingItem", b =>
+				{
+					b.Property<int>("Id")
+						.ValueGeneratedOnAdd()
+						.HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+					NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("BrandId")
-                        .HasColumnType("integer");
+					b.Property<int>("BrandId")
+						.HasColumnType("integer");
 
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("integer");
+					b.Property<int>("CategoryId")
+						.HasColumnType("integer");
 
-                    b.Property<string>("Color")
-                        .HasColumnType("text");
+					b.Property<string>("Color")
+						.HasColumnType("text");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone");
+					b.Property<DateTime>("CreatedAt")
+						.ValueGeneratedOnAdd()
+						.HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("text");
+					b.Property<string>("Description")
+						.HasColumnType("text");
 
-                    b.Property<string>("ImagePath")
-                        .HasColumnType("text");
+					b.Property<string>("ImagePath")
+						.HasColumnType("text");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("character varying(150)");
+					b.Property<string>("Name")
+						.IsRequired()
+						.HasMaxLength(150)
+						.HasColumnType("character varying(150)");
 
-                    b.Property<decimal>("Price")
-                        .HasPrecision(10, 2)
-                        .HasColumnType("numeric(10,2)");
+					b.Property<decimal>("Price")
+						.HasPrecision(10, 2)
+						.HasColumnType("numeric(10,2)");
 
-                    b.Property<string>("Season")
-                        .HasColumnType("text");
+					b.Property<string>("Season")
+						.HasColumnType("text");
 
-                    b.Property<string>("Size")
-                        .HasColumnType("text");
+					b.Property<string>("Size")
+						.HasColumnType("text");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
+					b.Property<int>("UserId")
+						.HasColumnType("integer");
 
-                    b.HasKey("Id");
+					b.HasKey("Id");
 
-                    b.HasIndex("BrandId");
+					b.HasIndex("BrandId");
 
-                    b.HasIndex("CategoryId");
+					b.HasIndex("CategoryId");
 
-                    b.HasIndex("UserId");
+					b.HasIndex("UserId");
 
-                    b.ToTable("clothing_items", (string)null);
-                });
+					b.ToTable("clothing_items", (string)null);
+				});
 
-            modelBuilder.Entity("Wardrobe.Data.Entities.Outfit", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+			modelBuilder.Entity("Wardrobe.Data.Entities.Outfit", b =>
+				{
+					b.Property<int>("Id")
+						.ValueGeneratedOnAdd()
+						.HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+					NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone");
+					b.Property<DateTime>("CreatedAt")
+						.ValueGeneratedOnAdd()
+						.HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
+					b.Property<string>("Name")
+						.IsRequired()
+						.HasMaxLength(100)
+						.HasColumnType("character varying(100)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
+					b.Property<int>("UserId")
+						.HasColumnType("integer");
 
-                    b.HasKey("Id");
+					b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+					b.HasIndex("UserId");
 
-                    b.ToTable("outfits", (string)null);
-                });
+					b.ToTable("outfits", (string)null);
+				});
 
-            modelBuilder.Entity("Wardrobe.Data.Entities.OutfitItem", b =>
-                {
-                    b.Property<int>("OutfitId")
-                        .HasColumnType("integer");
+			modelBuilder.Entity("Wardrobe.Data.Entities.OutfitItem", b =>
+				{
+					b.Property<int>("OutfitId")
+						.HasColumnType("integer");
 
-                    b.Property<int>("ClothingItemId")
-                        .HasColumnType("integer");
+					b.Property<int>("ClothingItemId")
+						.HasColumnType("integer");
 
-                    b.HasKey("OutfitId", "ClothingItemId");
+					b.HasKey("OutfitId", "ClothingItemId");
 
-                    b.HasIndex("ClothingItemId");
+					b.HasIndex("ClothingItemId");
 
-                    b.ToTable("outfit_items", (string)null);
-                });
+					b.ToTable("outfit_items", (string)null);
+				});
 
-            modelBuilder.Entity("Wardrobe.Data.Entities.Role", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+			modelBuilder.Entity("Wardrobe.Data.Entities.Role", b =>
+				{
+					b.Property<int>("Id")
+						.ValueGeneratedOnAdd()
+						.HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+					NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone");
+					b.Property<DateTime>("CreatedAt")
+						.ValueGeneratedOnAdd()
+						.HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
+					b.Property<string>("Name")
+						.IsRequired()
+						.HasMaxLength(50)
+						.HasColumnType("character varying(50)");
 
-                    b.HasKey("Id");
+					b.HasKey("Id");
 
-                    b.HasIndex("Name")
-                        .IsUnique();
+					b.HasIndex("Name")
+						.IsUnique();
 
-                    b.ToTable("roles", (string)null);
-                });
+					b.ToTable("roles", (string)null);
+				});
 
-            modelBuilder.Entity("Wardrobe.Data.Entities.User", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+			modelBuilder.Entity("Wardrobe.Data.Entities.User", b =>
+				{
+					b.Property<int>("Id")
+						.ValueGeneratedOnAdd()
+						.HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+					NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone");
+					b.Property<DateTime>("CreatedAt")
+						.ValueGeneratedOnAdd()
+						.HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("character varying(150)");
+					b.Property<string>("Email")
+						.IsRequired()
+						.HasMaxLength(150)
+						.HasColumnType("character varying(150)");
 
-                    b.Property<string>("PasswordHash")
-                        .IsRequired()
-                        .HasColumnType("text");
+					b.Property<string>("PasswordHash")
+						.IsRequired()
+						.HasColumnType("text");
 
-                    b.Property<int>("RoleId")
-                        .HasColumnType("integer");
+					b.Property<int>("RoleId")
+						.HasColumnType("integer");
 
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
+					b.Property<string>("Username")
+						.IsRequired()
+						.HasMaxLength(100)
+						.HasColumnType("character varying(100)");
 
-                    b.HasKey("Id");
+					b.HasKey("Id");
 
-                    b.HasIndex("Email")
-                        .IsUnique();
+					b.HasIndex("Email")
+						.IsUnique();
 
-                    b.HasIndex("RoleId");
+					b.HasIndex("RoleId");
 
-                    b.ToTable("users", (string)null);
-                });
+					b.ToTable("users", (string)null);
+				});
 
-            modelBuilder.Entity("Wardrobe.Data.Entities.ClothingItem", b =>
-                {
-                    b.HasOne("Wardrobe.Data.Entities.Brand", "Brand")
-                        .WithMany("ClothingItems")
-                        .HasForeignKey("BrandId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+			modelBuilder.Entity("Wardrobe.Data.Entities.ClothingItem", b =>
+				{
+					b.HasOne("Wardrobe.Data.Entities.Brand", "Brand")
+						.WithMany("ClothingItems")
+						.HasForeignKey("BrandId")
+						.OnDelete(DeleteBehavior.Restrict)
+						.IsRequired();
 
-                    b.HasOne("Wardrobe.Data.Entities.Category", "Category")
-                        .WithMany("ClothingItems")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+					b.HasOne("Wardrobe.Data.Entities.Category", "Category")
+						.WithMany("ClothingItems")
+						.HasForeignKey("CategoryId")
+						.OnDelete(DeleteBehavior.Restrict)
+						.IsRequired();
 
-                    b.HasOne("Wardrobe.Data.Entities.User", "User")
-                        .WithMany("ClothingItems")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+					b.HasOne("Wardrobe.Data.Entities.User", "User")
+						.WithMany("ClothingItems")
+						.HasForeignKey("UserId")
+						.OnDelete(DeleteBehavior.Cascade)
+						.IsRequired();
 
-                    b.Navigation("Brand");
+					b.Navigation("Brand");
 
-                    b.Navigation("Category");
+					b.Navigation("Category");
 
-                    b.Navigation("User");
-                });
+					b.Navigation("User");
+				});
 
-            modelBuilder.Entity("Wardrobe.Data.Entities.Outfit", b =>
-                {
-                    b.HasOne("Wardrobe.Data.Entities.User", "User")
-                        .WithMany("Outfits")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+			modelBuilder.Entity("Wardrobe.Data.Entities.Outfit", b =>
+				{
+					b.HasOne("Wardrobe.Data.Entities.User", "User")
+						.WithMany("Outfits")
+						.HasForeignKey("UserId")
+						.OnDelete(DeleteBehavior.Cascade)
+						.IsRequired();
 
-                    b.Navigation("User");
-                });
+					b.Navigation("User");
+				});
 
-            modelBuilder.Entity("Wardrobe.Data.Entities.OutfitItem", b =>
-                {
-                    b.HasOne("Wardrobe.Data.Entities.ClothingItem", "ClothingItem")
-                        .WithMany("OutfitItems")
-                        .HasForeignKey("ClothingItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+			modelBuilder.Entity("Wardrobe.Data.Entities.OutfitItem", b =>
+				{
+					b.HasOne("Wardrobe.Data.Entities.ClothingItem", "ClothingItem")
+						.WithMany("OutfitItems")
+						.HasForeignKey("ClothingItemId")
+						.OnDelete(DeleteBehavior.Cascade)
+						.IsRequired();
 
-                    b.HasOne("Wardrobe.Data.Entities.Outfit", "Outfit")
-                        .WithMany("OutfitItems")
-                        .HasForeignKey("OutfitId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+					b.HasOne("Wardrobe.Data.Entities.Outfit", "Outfit")
+						.WithMany("OutfitItems")
+						.HasForeignKey("OutfitId")
+						.OnDelete(DeleteBehavior.Cascade)
+						.IsRequired();
 
-                    b.Navigation("ClothingItem");
+					b.Navigation("ClothingItem");
 
-                    b.Navigation("Outfit");
-                });
+					b.Navigation("Outfit");
+				});
 
-            modelBuilder.Entity("Wardrobe.Data.Entities.User", b =>
-                {
-                    b.HasOne("Wardrobe.Data.Entities.Role", "Role")
-                        .WithMany("Users")
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+			modelBuilder.Entity("Wardrobe.Data.Entities.User", b =>
+				{
+					b.HasOne("Wardrobe.Data.Entities.Role", "Role")
+						.WithMany("Users")
+						.HasForeignKey("RoleId")
+						.OnDelete(DeleteBehavior.Restrict)
+						.IsRequired();
 
-                    b.Navigation("Role");
-                });
+					b.Navigation("Role");
+				});
 
-            modelBuilder.Entity("Wardrobe.Data.Entities.Brand", b =>
-                {
-                    b.Navigation("ClothingItems");
-                });
+			modelBuilder.Entity("Wardrobe.Data.Entities.Brand", b =>
+				{
+					b.Navigation("ClothingItems");
+				});
 
-            modelBuilder.Entity("Wardrobe.Data.Entities.Category", b =>
-                {
-                    b.Navigation("ClothingItems");
-                });
+			modelBuilder.Entity("Wardrobe.Data.Entities.Category", b =>
+				{
+					b.Navigation("ClothingItems");
+				});
 
-            modelBuilder.Entity("Wardrobe.Data.Entities.ClothingItem", b =>
-                {
-                    b.Navigation("OutfitItems");
-                });
+			modelBuilder.Entity("Wardrobe.Data.Entities.ClothingItem", b =>
+				{
+					b.Navigation("OutfitItems");
+				});
 
-            modelBuilder.Entity("Wardrobe.Data.Entities.Outfit", b =>
-                {
-                    b.Navigation("OutfitItems");
-                });
+			modelBuilder.Entity("Wardrobe.Data.Entities.Outfit", b =>
+				{
+					b.Navigation("OutfitItems");
+				});
 
-            modelBuilder.Entity("Wardrobe.Data.Entities.Role", b =>
-                {
-                    b.Navigation("Users");
-                });
+			modelBuilder.Entity("Wardrobe.Data.Entities.Role", b =>
+				{
+					b.Navigation("Users");
+				});
 
-            modelBuilder.Entity("Wardrobe.Data.Entities.User", b =>
-                {
-                    b.Navigation("ClothingItems");
+			modelBuilder.Entity("Wardrobe.Data.Entities.User", b =>
+				{
+					b.Navigation("ClothingItems");
 
-                    b.Navigation("Outfits");
-                });
+					b.Navigation("Outfits");
+				});
 #pragma warning restore 612, 618
-        }
-    }
+		}
+	}
 }

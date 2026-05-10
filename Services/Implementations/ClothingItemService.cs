@@ -6,106 +6,106 @@ using Wardrobe.Services.Interfaces;
 namespace Wardrobe.Services.Implementations;
 
 public class ClothingItemService
-    : IClothingItemService
+	: IClothingItemService
 {
-    private readonly IClothingItemRepository _repository;
+	private readonly IClothingItemRepository _repository;
 
 
-    public ClothingItemService(
-        IClothingItemRepository repository)
-    {
-        _repository = repository;
-    }
+	public ClothingItemService(
+		IClothingItemRepository repository)
+	{
+		_repository = repository;
+	}
 
 
-    public async Task<IEnumerable<ClothingItem>> GetAllAsync()
-    {
-        return await _repository.GetAllAsync();
-    }
+	public async Task<IEnumerable<ClothingItem>> GetAllAsync()
+	{
+		return await _repository.GetAllAsync();
+	}
 
 
-    public async Task<ClothingItem?> GetByIdAsync(int id, int userId)
-    {
-        return await _repository.GetByIdWithDetailsAsync(id, userId);
-    }
+	public async Task<ClothingItem?> GetByIdAsync(int id, int userId)
+	{
+		return await _repository.GetByIdWithDetailsAsync(id, userId);
+	}
 
-    public async Task<IEnumerable<ClothingItem>> GetByUserIdAsync(int userId)
-    {
-        return await _repository.GetByUserIdAsync(userId);
-    }
-
-
-    public async Task<ClothingItem> CreateAsync(
-        ClothingItem item)
-    {
-        return await _repository.AddAsync(
-            item);
-    }
-
-    public async Task<
-    ClothingItem>
-    UpdateAsync(
-        int id,
-        ClothingItem item)
-    {
-        var existing =
-            await _repository
-                .GetByIdAsync(id);
+	public async Task<IEnumerable<ClothingItem>> GetByUserIdAsync(int userId)
+	{
+		return await _repository.GetByUserIdAsync(userId);
+	}
 
 
-        if (existing is null)
-        {
-            throw new NotFoundException(
-                "Clothing item not found");
-        }
+	public async Task<ClothingItem> CreateAsync(
+		ClothingItem item)
+	{
+		return await _repository.AddAsync(
+			item);
+	}
+
+	public async Task<
+	ClothingItem>
+	UpdateAsync(
+		int id,
+		ClothingItem item)
+	{
+		var existing =
+			await _repository
+				.GetByIdAsync(id);
 
 
-        existing.Name =
-            item.Name;
-
-        existing.Price =
-            item.Price;
-
-        existing.CategoryId =
-            item.CategoryId;
-
-        existing.BrandId =
-            item.BrandId;
-
-        if (!string.IsNullOrWhiteSpace(
-                item.ImagePath))
-        {
-            existing.ImagePath =
-                item.ImagePath;
-        }
+		if (existing is null)
+		{
+			throw new NotFoundException(
+				"Clothing item not found");
+		}
 
 
-        await _repository
-            .UpdateAsync(
-                existing);
+		existing.Name =
+			item.Name;
+
+		existing.Price =
+			item.Price;
+
+		existing.CategoryId =
+			item.CategoryId;
+
+		existing.BrandId =
+			item.BrandId;
+
+		if (!string.IsNullOrWhiteSpace(
+				item.ImagePath))
+		{
+			existing.ImagePath =
+				item.ImagePath;
+		}
 
 
-        return existing;
-    }
+		await _repository
+			.UpdateAsync(
+				existing);
 
 
-    public async Task DeleteAsync(
-        int id)
-    {
-        var existing =
-            await _repository
-                .GetByIdAsync(id);
+		return existing;
+	}
 
 
-        if (existing is null)
-        {
-            throw new NotFoundException(
-                "Clothing item not found");
-        }
+	public async Task DeleteAsync(
+		int id)
+	{
+		var existing =
+			await _repository
+				.GetByIdAsync(id);
 
 
-        await _repository
-            .DeleteAsync(
-                existing);
-    }
+		if (existing is null)
+		{
+			throw new NotFoundException(
+				"Clothing item not found");
+		}
+
+
+		await _repository
+			.DeleteAsync(
+				existing);
+	}
 }

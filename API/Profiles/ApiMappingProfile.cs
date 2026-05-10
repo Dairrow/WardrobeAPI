@@ -12,72 +12,72 @@ namespace Wardrobe.API.Profiles;
 
 public class ApiMappingProfile : Profile
 {
-    public ApiMappingProfile()
-    {
-        CreateMap<Category, CategoryDto>();
+	public ApiMappingProfile()
+	{
+		CreateMap<Category, CategoryDto>();
 
-        CreateMap<CreateCategoryDto, Category>();
-
-
-        CreateMap<Brand, BrandDto>();
-
-        CreateMap<CreateBrandDto, Brand>();
-
-        CreateMap<
-            CreateClothingItemDto,
-            ClothingItem>()
-            .ForMember(
-                x => x.ImagePath,
-                opt => opt.Ignore());
+		CreateMap<CreateCategoryDto, Category>();
 
 
-        CreateMap<
-            UpdateClothingItemDto,
-            ClothingItem>()
-            .ForMember(
-                x => x.ImagePath,
-                opt => opt.Ignore());
+		CreateMap<Brand, BrandDto>();
 
-        CreateMap<ClothingItem, ClothingItemDto>()
-            .ForMember(
-                x => x.CategoryName,
-                opt => opt.MapFrom(
-                    src => src.Category.Name))
-            .ForMember(
-                x => x.BrandName,
-                opt => opt.MapFrom(
-                    src => src.Brand.Name));
+		CreateMap<CreateBrandDto, Brand>();
+
+		CreateMap<
+			CreateClothingItemDto,
+			ClothingItem>()
+			.ForMember(
+				x => x.ImagePath,
+				opt => opt.Ignore());
 
 
-        CreateMap<CreateOutfitDto, Outfit>();
+		CreateMap<
+			UpdateClothingItemDto,
+			ClothingItem>()
+			.ForMember(
+				x => x.ImagePath,
+				opt => opt.Ignore());
 
-        CreateMap<OutfitItem, OutfitItemDto>();
-
-        CreateMap<Outfit, OutfitDto>();
-
-        CreateMap<Role, RoleDto>();
-
-
-        CreateMap<CreateUserDto, User>()
-            .ForMember(
-                x => x.PasswordHash,
-                opt => opt.Ignore());
+		CreateMap<ClothingItem, ClothingItemDto>()
+			.ForMember(
+				x => x.CategoryName,
+				opt => opt.MapFrom(
+					src => src.Category.Name))
+			.ForMember(
+				x => x.BrandName,
+				opt => opt.MapFrom(
+					src => src.Brand.Name));
 
 
-        CreateMap<User, UserDto>()
-            .ForMember(
-                x => x.RoleName,
-                opt => opt.MapFrom(
-                    src => src.Role.Name));
+		CreateMap<CreateOutfitDto, Outfit>();
 
-        CreateMap<UpdateCategoryDto, Category>();
+		CreateMap<OutfitItem, OutfitItemDto>();
 
-        CreateMap<UpdateBrandDto, Brand>();
+		CreateMap<Outfit, OutfitDto>();
 
-        CreateMap<UpdateUserDto, User>();
+		CreateMap<Role, RoleDto>();
 
-        CreateMap<UpdateClothingItemDto, ClothingItem>();
 
-        CreateMap<UpdateOutfitDto, Outfit>();
-    }
+		CreateMap<CreateUserDto, User>()
+			.ForMember(
+				x => x.PasswordHash,
+				opt => opt.Ignore());
+
+
+		CreateMap<User, UserDto>()
+			.ForMember(
+				x => x.RoleName,
+				opt => opt.MapFrom(
+					src => src.Role.Name));
+
+		CreateMap<UpdateCategoryDto, Category>();
+
+		CreateMap<UpdateBrandDto, Brand>();
+
+		CreateMap<UpdateUserDto, User>();
+
+		CreateMap<UpdateClothingItemDto, ClothingItem>();
+
+		CreateMap<UpdateOutfitDto, Outfit>();
+	}
 }

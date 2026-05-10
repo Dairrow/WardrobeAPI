@@ -9,55 +9,55 @@ namespace Wardrobe.API.Controllers;
 [Route("api/[controller]")]
 [Authorize(Roles = "Admin")]
 public class FilesController
-    : ControllerBase
+	: ControllerBase
 {
-    private readonly IFileService
-        _fileService;
+	private readonly IFileService
+		_fileService;
 
 
-    public FilesController(
-        IFileService fileService)
-    {
-        _fileService = fileService;
-    }
+	public FilesController(
+		IFileService fileService)
+	{
+		_fileService = fileService;
+	}
 
 
-    [HttpPost("upload")]
-    [Authorize(Roles = "Admin")]
-    [ProducesResponseType(200)]
-    [ProducesResponseType(400)]
-    public async Task<ActionResult<
-    FileUploadResponseDto>>
-    Upload(
-        [FromForm]
-        IFormFile file)
-    {
-        var path =
-            await _fileService
-                .UploadImageAsync(
-                    file);
+	[HttpPost("upload")]
+	[Authorize(Roles = "Admin")]
+	[ProducesResponseType(200)]
+	[ProducesResponseType(400)]
+	public async Task<ActionResult<
+	FileUploadResponseDto>>
+	Upload(
+		[FromForm]
+		IFormFile file)
+	{
+		var path =
+			await _fileService
+				.UploadImageAsync(
+					file);
 
 
-        return Ok(
-            new FileUploadResponseDto
-            {
-                Path = path
-            });
-    }
+		return Ok(
+			new FileUploadResponseDto
+			{
+				Path = path
+			});
+	}
 
 
-    [HttpDelete]
-    [Authorize(Roles = "Admin")]
-    [ProducesResponseType(204)]
-    public async Task<IActionResult>
-        Delete(
-            string path)
-    {
-        await _fileService
-            .DeleteFileAsync(
-                path);
+	[HttpDelete]
+	[Authorize(Roles = "Admin")]
+	[ProducesResponseType(204)]
+	public async Task<IActionResult>
+		Delete(
+			string path)
+	{
+		await _fileService
+			.DeleteFileAsync(
+				path);
 
 
-        return NoContent();
-    }
+		return NoContent();
+	}
 }

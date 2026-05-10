@@ -5,14 +5,14 @@ namespace Wardrobe.Repositories.Helpers;
 
 public static class PasswordHasher
 {
-    public static string Hash(string password)
-    {
-        var bytes =
-            SHA256.HashData(
-                Encoding.UTF8.GetBytes(
-                    password));
+	public static string Hash(string password)
+	{
+		var bytes =
+			SHA256.HashData(
+				Encoding.UTF8.GetBytes(
+					password));
 
-        return Convert.ToBase64String(
-            bytes);
-    }
+		return Convert.ToBase64String(
+			bytes);
+	}
 }

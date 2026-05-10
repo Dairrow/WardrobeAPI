@@ -1,11 +1,11 @@
 ﻿namespace Wardrobe.Services.Exceptions;
 
 public class ConflictException
-    : Exception
+	: Exception
 {
-    public ConflictException(
-        string message)
-        : base(message)
-    {
-    }
+	public ConflictException(
+		string message)
+		: base(message)
+	{
+	}
 }

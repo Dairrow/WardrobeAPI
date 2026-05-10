@@ -8,95 +8,95 @@ namespace Wardrobe.Services.Implementations;
 
 public class CategoryService : ICategoryService
 {
-    private readonly ICategoryRepository _repository;
+	private readonly ICategoryRepository _repository;
 
-    private readonly ILogger<CategoryService> _logger;
-
-
-    public CategoryService(
-        ICategoryRepository repository,
-        ILogger<CategoryService> logger)
-    {
-        _repository = repository;
-
-        _logger = logger;
-    }
+	private readonly ILogger<CategoryService> _logger;
 
 
-    public async Task<IEnumerable<Category>> GetAllAsync()
-    {
-        _logger.LogInformation(
-            "Getting categories");
+	public CategoryService(
+		ICategoryRepository repository,
+		ILogger<CategoryService> logger)
+	{
+		_repository = repository;
 
-        return await _repository.GetAllAsync();
-    }
-
-
-    public async Task<Category?> GetByIdAsync(int id)
-    {
-        return await _repository.GetByIdAsync(
-            id);
-    }
+		_logger = logger;
+	}
 
 
-    public async Task<Category> CreateAsync(
-        Category category)
-    {
-        _logger.LogInformation(
-            "Creating category {Name}",
-            category.Name);
+	public async Task<IEnumerable<Category>> GetAllAsync()
+	{
+		_logger.LogInformation(
+			"Getting categories");
 
-        return await _repository.AddAsync(
-            category);
-    }
-
-    public async Task<Category>
-    UpdateAsync(
-        int id,
-        Category category)
-    {
-        var existing =
-            await _repository
-                .GetByIdAsync(id);
+		return await _repository.GetAllAsync();
+	}
 
 
-        if (existing is null)
-        {
-            throw new NotFoundException(
-                "Category not found");
-        }
+	public async Task<Category?> GetByIdAsync(int id)
+	{
+		return await _repository.GetByIdAsync(
+			id);
+	}
 
 
-        existing.Name =
-            category.Name;
+	public async Task<Category> CreateAsync(
+		Category category)
+	{
+		_logger.LogInformation(
+			"Creating category {Name}",
+			category.Name);
+
+		return await _repository.AddAsync(
+			category);
+	}
+
+	public async Task<Category>
+	UpdateAsync(
+		int id,
+		Category category)
+	{
+		var existing =
+			await _repository
+				.GetByIdAsync(id);
 
 
-        await _repository
-            .UpdateAsync(
-                existing);
+		if (existing is null)
+		{
+			throw new NotFoundException(
+				"Category not found");
+		}
 
 
-        return existing;
-    }
+		existing.Name =
+			category.Name;
 
 
-    public async Task DeleteAsync(
-        int id)
-    {
-        var existing =
-            await _repository
-                .GetByIdAsync(id);
+		await _repository
+			.UpdateAsync(
+				existing);
 
 
-        if (existing is null)
-        {
-            throw new NotFoundException(
-                "Category not found");
-        }
+		return existing;
+	}
 
 
-        await _repository
-            .DeleteAsync(
-                existing);
-    }
+	public async Task DeleteAsync(
+		int id)
+	{
+		var existing =
+			await _repository
+				.GetByIdAsync(id);
+
+
+		if (existing is null)
+		{
+			throw new NotFoundException(
+				"Category not found");
+		}
+
+
+		await _repository
+			.DeleteAsync(
+				existing);
+	}
 }

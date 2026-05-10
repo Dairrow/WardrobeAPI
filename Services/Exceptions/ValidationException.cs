@@ -1,11 +1,11 @@
 ﻿namespace Wardrobe.Services.Exceptions;
 
 public class ValidationException
-    : Exception
+	: Exception
 {
-    public ValidationException(
-        string message)
-        : base(message)
-    {
-    }
+	public ValidationException(
+		string message)
+		: base(message)
+	{
+	}
 }

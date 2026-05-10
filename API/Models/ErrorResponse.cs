@@ -2,11 +2,11 @@
 
 public class ErrorResponse
 {
-    public int StatusCode { get; set; }
+	public int StatusCode { get; set; }
 
-    public string Message { get; set; } = null!;
+	public string Message { get; set; } = null!;
 
-    public string TraceId { get; set; } = null!;
+	public string TraceId { get; set; } = null!;
 
-    public DateTime TimestampUtc { get; set; }
+	public DateTime TimestampUtc { get; set; }
 }

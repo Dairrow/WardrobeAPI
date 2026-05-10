@@ -8,126 +8,126 @@ namespace Wardrobe.Services.Implementations;
 
 public class UserService : IUserService
 {
-    private readonly IUserRepository _repository;
+	private readonly IUserRepository _repository;
 
-    private readonly ILogger<UserService> _logger;
-
-
-    public UserService(
-        IUserRepository repository,
-        ILogger<UserService> logger)
-    {
-        _repository = repository;
-
-        _logger = logger;
-    }
+	private readonly ILogger<UserService> _logger;
 
 
-    public async Task<User?> GetByIdAsync(int id)
-    {
-        _logger.LogInformation(
-            "Getting user by id {UserId}",
-            id);
+	public UserService(
+		IUserRepository repository,
+		ILogger<UserService> logger)
+	{
+		_repository = repository;
 
-        return await _repository.GetByIdAsync(id);
-    }
-
-
-    public async Task<User?> GetByEmailAsync(string email)
-    {
-        _logger.LogInformation(
-            "Getting user by email {Email}",
-            email);
-
-        return await _repository.GetByEmailAsync(email);
-    }
+		_logger = logger;
+	}
 
 
-    public async Task<IEnumerable<User>> GetAllAsync()
-    {
-        _logger.LogInformation(
-            "Getting all users");
+	public async Task<User?> GetByIdAsync(int id)
+	{
+		_logger.LogInformation(
+			"Getting user by id {UserId}",
+			id);
 
-        return await _repository.GetAllAsync();
-    }
-
-
-    public async Task<User> CreateAsync(User user)
-    {
-        var existingUser =
-            await _repository.GetByEmailAsync(
-                user.Email);
+		return await _repository.GetByIdAsync(id);
+	}
 
 
-        if (existingUser is not null)
-        {
-            throw new ConflictException(
-                "User already exists");
-        }
+	public async Task<User?> GetByEmailAsync(string email)
+	{
+		_logger.LogInformation(
+			"Getting user by email {Email}",
+			email);
+
+		return await _repository.GetByEmailAsync(email);
+	}
 
 
-        _logger.LogInformation(
-            "Creating user {Email}",
-            user.Email);
+	public async Task<IEnumerable<User>> GetAllAsync()
+	{
+		_logger.LogInformation(
+			"Getting all users");
+
+		return await _repository.GetAllAsync();
+	}
 
 
-        return await _repository.AddAsync(
-            user);
-    }
-
-    public async Task<User>
-    UpdateAsync(
-        int id,
-        User user)
-    {
-        var existing =
-            await _repository
-                .GetByIdAsync(id);
+	public async Task<User> CreateAsync(User user)
+	{
+		var existingUser =
+			await _repository.GetByEmailAsync(
+				user.Email);
 
 
-        if (existing is null)
-        {
-            throw new NotFoundException(
-                "User not found");
-        }
+		if (existingUser is not null)
+		{
+			throw new ConflictException(
+				"User already exists");
+		}
 
 
-        existing.Username =
-            user.Username;
-
-        existing.Email =
-            user.Email;
-
-        existing.RoleId =
-            user.RoleId;
+		_logger.LogInformation(
+			"Creating user {Email}",
+			user.Email);
 
 
-        await _repository
-            .UpdateAsync(
-                existing);
+		return await _repository.AddAsync(
+			user);
+	}
+
+	public async Task<User>
+	UpdateAsync(
+		int id,
+		User user)
+	{
+		var existing =
+			await _repository
+				.GetByIdAsync(id);
 
 
-        return existing;
-    }
+		if (existing is null)
+		{
+			throw new NotFoundException(
+				"User not found");
+		}
 
 
-    public async Task DeleteAsync(
-        int id)
-    {
-        var existing =
-            await _repository
-                .GetByIdAsync(id);
+		existing.Username =
+			user.Username;
+
+		existing.Email =
+			user.Email;
+
+		existing.RoleId =
+			user.RoleId;
 
 
-        if (existing is null)
-        {
-            throw new NotFoundException(
-                "User not found");
-        }
+		await _repository
+			.UpdateAsync(
+				existing);
 
 
-        await _repository
-            .DeleteAsync(
-                existing);
-    }
+		return existing;
+	}
+
+
+	public async Task DeleteAsync(
+		int id)
+	{
+		var existing =
+			await _repository
+				.GetByIdAsync(id);
+
+
+		if (existing is null)
+		{
+			throw new NotFoundException(
+				"User not found");
+		}
+
+
+		await _repository
+			.DeleteAsync(
+				existing);
+	}
 }

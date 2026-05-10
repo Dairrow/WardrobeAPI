@@ -6,19 +6,19 @@ using Wardrobe.Repositories.Interfaces;
 namespace Wardrobe.Repositories.Implementations;
 
 public class RoleRepository
-    : BaseRepository<Role>,
-      IRoleRepository
+	: BaseRepository<Role>,
+	  IRoleRepository
 {
-    public RoleRepository(AppDbContext context)
-        : base(context)
-    {
-    }
+	public RoleRepository(AppDbContext context)
+		: base(context)
+	{
+	}
 
 
-    public async Task<Role?> GetByNameAsync(string name)
-    {
-        return await Context.Roles
-            .FirstOrDefaultAsync(
-                x => x.Name == name);
-    }
+	public async Task<Role?> GetByNameAsync(string name)
+	{
+		return await Context.Roles
+			.FirstOrDefaultAsync(
+				x => x.Name == name);
+	}
 }

@@ -6,31 +6,31 @@ namespace Wardrobe.Services.DependencyInjection;
 
 public static class ServiceExtensions
 {
-    public static IServiceCollection AddServices(
-        this IServiceCollection services)
-    {
+	public static IServiceCollection AddServices(
+		this IServiceCollection services)
+	{
 
-        services.AddScoped<IJwtService, JwtService>();
+		services.AddScoped<IJwtService, JwtService>();
 
-        services.AddScoped<IAuthService, AuthService>();
+		services.AddScoped<IAuthService, AuthService>();
 
-        services.AddScoped<IRoleService, RoleService>();
+		services.AddScoped<IRoleService, RoleService>();
 
-        services.AddScoped<IUserService, UserService>();
+		services.AddScoped<IUserService, UserService>();
 
-        services.AddScoped<ICategoryService, CategoryService>();
+		services.AddScoped<ICategoryService, CategoryService>();
 
-        services.AddScoped<IFileService,FileService>();
+		services.AddScoped<IFileService,FileService>();
 
-        services.AddScoped<IBrandService, BrandService>();
+		services.AddScoped<IBrandService, BrandService>();
 
-        services.AddScoped<IClothingItemService, ClothingItemService>();
+		services.AddScoped<IClothingItemService, ClothingItemService>();
 
-        services.AddScoped<IOutfitService, OutfitService>();
+		services.AddScoped<IOutfitService, OutfitService>();
 
-        services.AddScoped<IOutfitItemService, OutfitItemService>();
+		services.AddScoped<IOutfitItemService, OutfitItemService>();
 
 
-        return services;
-    }
+		return services;
+	}
 }

@@ -7,108 +7,108 @@ using Wardrobe.Services.Interfaces;
 namespace Wardrobe.Services.Implementations;
 
 public class AuthService
-    : IAuthService
+	: IAuthService
 {
-    private readonly IUserRepository _users;
+	private readonly IUserRepository _users;
 
-    private readonly IRoleRepository _roles;
+	private readonly IRoleRepository _roles;
 
-    private readonly IJwtService _jwt;
-
-
-    public AuthService(
-        IUserRepository users,
-        IRoleRepository roles,
-        IJwtService jwt)
-    {
-        _users = users;
-
-        _roles = roles;
-
-        _jwt = jwt;
-    }
+	private readonly IJwtService _jwt;
 
 
-    public async Task<User> RegisterAsync(
-        string username,
-        string email,
-        string password)
-    {
-        var existing =
-            await _users.GetByEmailAsync(
-                email);
+	public AuthService(
+		IUserRepository users,
+		IRoleRepository roles,
+		IJwtService jwt)
+	{
+		_users = users;
+
+		_roles = roles;
+
+		_jwt = jwt;
+	}
 
 
-        if (existing is not null)
-        {
-            throw new ConflictException(
-                "User already exists");
-        }
+	public async Task<User> RegisterAsync(
+		string username,
+		string email,
+		string password)
+	{
+		var existing =
+			await _users.GetByEmailAsync(
+				email);
 
 
-        var role =
-            await _roles.GetByNameAsync(
-                "User");
+		if (existing is not null)
+		{
+			throw new ConflictException(
+				"User already exists");
+		}
 
 
-        if (role is null)
-        {
-            throw new NotFoundException(
-                "User role not found");
-        }
+		var role =
+			await _roles.GetByNameAsync(
+				"User");
 
 
-        var user =
-            new User
-            {
-                Username = username,
-
-                Email = email,
-
-                PasswordHash =
-                    PasswordHasher.Hash(
-                        password),
-
-                RoleId = role.Id,
-
-                Role = role
-            };
+		if (role is null)
+		{
+			throw new NotFoundException(
+				"User role not found");
+		}
 
 
-        return await _users.AddAsync(
-            user);
-    }
+		var user =
+			new User
+			{
+				Username = username,
+
+				Email = email,
+
+				PasswordHash =
+					PasswordHasher.Hash(
+						password),
+
+				RoleId = role.Id,
+
+				Role = role
+			};
 
 
-    public async Task<string> LoginAsync(
-        string email,
-        string password)
-    {
-        var user =
-            await _users.GetByEmailAsync(
-                email);
+		return await _users.AddAsync(
+			user);
+	}
 
 
-        if (user is null)
-        {
-            throw new UnauthorizedException(
-                "Invalid credentials");
-        }
+	public async Task<string> LoginAsync(
+		string email,
+		string password)
+	{
+		var user =
+			await _users.GetByEmailAsync(
+				email);
 
 
-        var hash =
-            PasswordHasher.Hash(
-                password);
+		if (user is null)
+		{
+			throw new UnauthorizedException(
+				"Invalid credentials");
+		}
 
 
-        if (user.PasswordHash != hash)
-        {
-            throw new UnauthorizedException(
-                "Invalid credentials");
-        }
+		var hash =
+			PasswordHasher.Hash(
+				password);
 
 
-        return _jwt.GenerateToken(
-            user);
-    }
+		if (user.PasswordHash != hash)
+		{
+			throw new UnauthorizedException(
+				"Invalid credentials");
+		}
+
+
+		return _jwt.GenerateToken(
+			user);
+	}
 }

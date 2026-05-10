@@ -12,148 +12,148 @@ namespace Wardrobe.API.Controllers;
 [Authorize]
 [Route("api/[controller]")]
 public class ClothingItemsController
-    : ControllerBase
+	: ControllerBase
 {
-    private readonly IClothingItemService _service;
-    private readonly IFileService _fileService;
-    private readonly IMapper _mapper;
+	private readonly IClothingItemService _service;
+	private readonly IFileService _fileService;
+	private readonly IMapper _mapper;
 
 
-    public ClothingItemsController(
-        IClothingItemService service,
-        IFileService fileService,
-        IMapper mapper)
-    {
-        _service = service;
+	public ClothingItemsController(
+		IClothingItemService service,
+		IFileService fileService,
+		IMapper mapper)
+	{
+		_service = service;
 
-        _fileService = fileService;
+		_fileService = fileService;
 
-        _mapper = mapper;
-    }
-
-
-    [HttpGet]
-    public async Task<IActionResult> GetAll()
-    {
-        var userId = GetCurrentUserId();
-
-        var items = await _service.GetByUserIdAsync(userId);
-
-        return Ok(_mapper.Map<IEnumerable<ClothingItemDto>>(items));
-    }
-
-    [HttpGet("{id:int}")]
-    public async Task<ActionResult<ClothingItemDto>> GetById(int id)
-    {
-        var userId = GetCurrentUserId();
-        var item = await _service.GetByIdAsync(id, userId);
-
-        if (item is null)
-            return NotFound();
-
-        return Ok(_mapper.Map<ClothingItemDto>(item));
-    }
-
-    [HttpPost]
-    [Authorize(Roles = "Admin")]
-    [ProducesResponseType(201)]
-    public async Task<ActionResult<
-        ClothingItemDto>>
-        Create(
-            [FromForm]
-        CreateClothingItemDto dto)
-    {
-        var entity =
-            _mapper.Map<
-                ClothingItem>(
-                    dto);
-
-        entity.UserId = GetCurrentUserId();
+		_mapper = mapper;
+	}
 
 
-        if (dto.Image is not null)
-        {
-            entity.ImagePath =
-                await _fileService
-                    .UploadImageAsync(
-                        dto.Image);
-        }
+	[HttpGet]
+	public async Task<IActionResult> GetAll()
+	{
+		var userId = GetCurrentUserId();
+
+		var items = await _service.GetByUserIdAsync(userId);
+
+		return Ok(_mapper.Map<IEnumerable<ClothingItemDto>>(items));
+	}
+
+	[HttpGet("{id:int}")]
+	public async Task<ActionResult<ClothingItemDto>> GetById(int id)
+	{
+		var userId = GetCurrentUserId();
+		var item = await _service.GetByIdAsync(id, userId);
+
+		if (item is null)
+			return NotFound();
+
+		return Ok(_mapper.Map<ClothingItemDto>(item));
+	}
+
+	[HttpPost]
+	[Authorize(Roles = "Admin")]
+	[ProducesResponseType(201)]
+	public async Task<ActionResult<
+		ClothingItemDto>>
+		Create(
+			[FromForm]
+		CreateClothingItemDto dto)
+	{
+		var entity =
+			_mapper.Map<
+				ClothingItem>(
+					dto);
+
+		entity.UserId = GetCurrentUserId();
 
 
-        var created =
-            await _service
-                .CreateAsync(
-                    entity);
+		if (dto.Image is not null)
+		{
+			entity.ImagePath =
+				await _fileService
+					.UploadImageAsync(
+						dto.Image);
+		}
 
 
-        var result =
-            _mapper.Map<
-                ClothingItemDto>(
-                    created);
+		var created =
+			await _service
+				.CreateAsync(
+					entity);
 
 
-        return CreatedAtAction(
-            nameof(GetById),
-            new { id = result.Id },
-            result);
-    }
+		var result =
+			_mapper.Map<
+				ClothingItemDto>(
+					created);
 
-    private int GetCurrentUserId()
-    {
-        var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-        if (string.IsNullOrEmpty(userIdClaim) || !int.TryParse(userIdClaim, out int userId))
-        {
-            throw new UnauthorizedAccessException("User ID not found in token");
-        }
+		return CreatedAtAction(
+			nameof(GetById),
+			new { id = result.Id },
+			result);
+	}
 
-        return userId;
-    }
+	private int GetCurrentUserId()
+	{
+		var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-    [HttpPut("{id:int}")]
-    [Authorize(Roles = "Admin")]
-    public async Task<ActionResult<ClothingItemDto>> Update(int id, [FromForm] UpdateClothingItemDto dto)
-    {
-        var userId = GetCurrentUserId();
-        var existing = await _service.GetByIdAsync(id, userId);
+		if (string.IsNullOrEmpty(userIdClaim) || !int.TryParse(userIdClaim, out int userId))
+		{
+			throw new UnauthorizedAccessException("User ID not found in token");
+		}
 
-        if (existing is null)
-            return NotFound("Clothing item not found");
+		return userId;
+	}
 
-        if (dto.Image is not null && !string.IsNullOrWhiteSpace(existing.ImagePath))
-        {
-            await _fileService.DeleteFileAsync(existing.ImagePath);
-        }
+	[HttpPut("{id:int}")]
+	[Authorize(Roles = "Admin")]
+	public async Task<ActionResult<ClothingItemDto>> Update(int id, [FromForm] UpdateClothingItemDto dto)
+	{
+		var userId = GetCurrentUserId();
+		var existing = await _service.GetByIdAsync(id, userId);
 
-        var entity = _mapper.Map<ClothingItem>(dto);
+		if (existing is null)
+			return NotFound("Clothing item not found");
 
-        if (dto.Image is not null)
-        {
-            entity.ImagePath = await _fileService.UploadImageAsync(dto.Image);
-        }
+		if (dto.Image is not null && !string.IsNullOrWhiteSpace(existing.ImagePath))
+		{
+			await _fileService.DeleteFileAsync(existing.ImagePath);
+		}
 
-        var updated = await _service.UpdateAsync(id, entity);
+		var entity = _mapper.Map<ClothingItem>(dto);
 
-        return Ok(_mapper.Map<ClothingItemDto>(updated));
-    }
+		if (dto.Image is not null)
+		{
+			entity.ImagePath = await _fileService.UploadImageAsync(dto.Image);
+		}
 
-    [HttpDelete("{id:int}")]
-    [Authorize(Roles = "Admin")]
-    public async Task<IActionResult> Delete(int id)
-    {
-        var userId = GetCurrentUserId();
-        var existing = await _service.GetByIdAsync(id, userId);
+		var updated = await _service.UpdateAsync(id, entity);
 
-        if (existing is null)
-            return NotFound("Clothing item not found");
+		return Ok(_mapper.Map<ClothingItemDto>(updated));
+	}
 
-        if (!string.IsNullOrWhiteSpace(existing.ImagePath))
-        {
-            await _fileService.DeleteFileAsync(existing.ImagePath);
-        }
+	[HttpDelete("{id:int}")]
+	[Authorize(Roles = "Admin")]
+	public async Task<IActionResult> Delete(int id)
+	{
+		var userId = GetCurrentUserId();
+		var existing = await _service.GetByIdAsync(id, userId);
 
-        await _service.DeleteAsync(id);
+		if (existing is null)
+			return NotFound("Clothing item not found");
 
-        return NoContent();
-    }
+		if (!string.IsNullOrWhiteSpace(existing.ImagePath))
+		{
+			await _fileService.DeleteFileAsync(existing.ImagePath);
+		}
+
+		await _service.DeleteAsync(id);
+
+		return NoContent();
+	}
 }

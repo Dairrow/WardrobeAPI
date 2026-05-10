@@ -2,5 +2,5 @@
 
 public class FileUploadResponseDto
 {
-    public string Path { get; set; } = null!;
+	public string Path { get; set; } = null!;
 }

@@ -151,3 +151,17 @@ F:\For VS\Wardrobe_API\API\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
 F:\For VS\Wardrobe_API\API\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 F:\For VS\Wardrobe_API\API\obj\Debug\net8.0\API.sourcelink.json
 F:\For VS\Wardrobe_API\API\bin\Debug\net8.0\API.staticwebassets.runtime.json
+F:\For VS\Wardrobe_API\API\bin\Debug\net8.0\Microsoft.Extensions.Configuration.dll
+F:\For VS\Wardrobe_API\API\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Binder.dll
+F:\For VS\Wardrobe_API\API\bin\Debug\net8.0\Microsoft.Extensions.Diagnostics.Abstractions.dll
+F:\For VS\Wardrobe_API\API\bin\Debug\net8.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+F:\For VS\Wardrobe_API\API\bin\Debug\net8.0\Microsoft.Extensions.Hosting.Abstractions.dll
+F:\For VS\Wardrobe_API\API\bin\Debug\net8.0\Serilog.dll
+F:\For VS\Wardrobe_API\API\bin\Debug\net8.0\Serilog.AspNetCore.dll
+F:\For VS\Wardrobe_API\API\bin\Debug\net8.0\Serilog.Extensions.Hosting.dll
+F:\For VS\Wardrobe_API\API\bin\Debug\net8.0\Serilog.Extensions.Logging.dll
+F:\For VS\Wardrobe_API\API\bin\Debug\net8.0\Serilog.Formatting.Compact.dll
+F:\For VS\Wardrobe_API\API\bin\Debug\net8.0\Serilog.Settings.Configuration.dll
+F:\For VS\Wardrobe_API\API\bin\Debug\net8.0\Serilog.Sinks.Console.dll
+F:\For VS\Wardrobe_API\API\bin\Debug\net8.0\Serilog.Sinks.Debug.dll
+F:\For VS\Wardrobe_API\API\bin\Debug\net8.0\Serilog.Sinks.File.dll

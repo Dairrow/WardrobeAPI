@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using System.Linq;
+using Microsoft.Extensions.Logging;
 using Wardrobe.Services.Exceptions;
 using Wardrobe.Services.Interfaces;
 

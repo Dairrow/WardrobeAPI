@@ -4,8 +4,10 @@ using Wardrobe.Services.DependencyInjection;
 using Wardrobe.Repositories.Seed;
 using Wardrobe.API.Profiles;
 using Microsoft.OpenApi.Models;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.AddSerilogLogging();
 
 
 builder.Services.AddControllers();
@@ -60,6 +62,7 @@ builder.Services.AddJwt(builder.Configuration);
 
 
 var app = builder.Build();
+app.UseSerilogRequestLogging();
 app.UseGlobalExceptionHandling();
 app.UseStaticFiles();
 

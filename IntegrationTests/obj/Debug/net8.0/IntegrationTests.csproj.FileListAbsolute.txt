@@ -104,7 +104,6 @@ F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\refs\Microsoft.AspNetCo
 F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\refs\Microsoft.AspNetCore.WebUtilities.dll
 F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\refs\Microsoft.CSharp.dll
 F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\refs\Microsoft.Extensions.Configuration.CommandLine.dll
-F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\refs\Microsoft.Extensions.Configuration.dll
 F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\refs\Microsoft.Extensions.Configuration.EnvironmentVariables.dll
 F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\refs\Microsoft.Extensions.Configuration.Ini.dll
 F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\refs\Microsoft.Extensions.Configuration.KeyPerFile.dll
@@ -112,7 +111,6 @@ F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\refs\Microsoft.Extensio
 F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\refs\Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll
 F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\refs\Microsoft.Extensions.Diagnostics.HealthChecks.dll
 F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\refs\Microsoft.Extensions.Features.dll
-F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\refs\Microsoft.Extensions.FileProviders.Abstractions.dll
 F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\refs\Microsoft.Extensions.FileProviders.Composite.dll
 F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\refs\Microsoft.Extensions.FileProviders.Embedded.dll
 F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\refs\Microsoft.Extensions.FileProviders.Physical.dll
@@ -184,7 +182,6 @@ F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\refs\System.IO.FileSyst
 F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\refs\System.IO.FileSystem.Watcher.dll
 F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\refs\System.IO.IsolatedStorage.dll
 F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\refs\System.IO.MemoryMappedFiles.dll
-F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\refs\System.IO.Pipelines.dll
 F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\refs\System.IO.Pipes.AccessControl.dll
 F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\refs\System.IO.Pipes.dll
 F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\refs\System.IO.UnmanagedMemoryStream.dll
@@ -263,8 +260,6 @@ F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\refs\System.ServiceProc
 F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\refs\System.Text.Encoding.CodePages.dll
 F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\refs\System.Text.Encoding.dll
 F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\refs\System.Text.Encoding.Extensions.dll
-F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\refs\System.Text.Encodings.Web.dll
-F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\refs\System.Text.Json.dll
 F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\refs\System.Text.RegularExpressions.dll
 F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\refs\System.Threading.Channels.dll
 F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\refs\System.Threading.dll
@@ -448,3 +443,18 @@ F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\ICSharpCode.SharpZipLib
 F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\Renci.SshNet.dll
 F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\Testcontainers.dll
 F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\Testcontainers.PostgreSql.dll
+F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\Microsoft.Extensions.Configuration.dll
+F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\Serilog.dll
+F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\Serilog.AspNetCore.dll
+F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\Serilog.Extensions.Hosting.dll
+F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\Serilog.Extensions.Logging.dll
+F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\Serilog.Formatting.Compact.dll
+F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\Serilog.Settings.Configuration.dll
+F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\Serilog.Sinks.Console.dll
+F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\Serilog.Sinks.Debug.dll
+F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\Serilog.Sinks.File.dll
+F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\System.IO.Pipelines.dll
+F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\System.Text.Encodings.Web.dll
+F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\System.Text.Json.dll
+F:\For VS\Wardrobe_API\IntegrationTests\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll

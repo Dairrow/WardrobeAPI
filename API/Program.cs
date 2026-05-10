@@ -77,6 +77,10 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-await DatabaseSeeder.SeedAsync(app.Services);
+
+if (!app.Environment.IsEnvironment("Testing"))
+{
+    await DatabaseSeeder.SeedAsync(app.Services);
+}
 
 app.Run();
